@@ -1,0 +1,1991 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+<meta name="theme-color" content="#0a0a0a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Greek God">
+<meta name="application-name" content="Greek God Protocol">
+<meta name="description" content="Rutina personalizada · Lean bulk Greek God aesthetic">
+
+<title>Greek God · Protocol</title>
+
+<!-- ICONO SVG embebido (favicon + apple-touch-icon) -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' fill='%230a0a0a'/%3E%3Ctext x='256' y='340' font-family='Georgia,serif' font-style='italic' font-weight='900' font-size='340' fill='%23d4ff3a' text-anchor='middle'%3EG%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' fill='%230a0a0a' rx='100'/%3E%3Ctext x='256' y='340' font-family='Georgia,serif' font-style='italic' font-weight='900' font-size='340' fill='%23d4ff3a' text-anchor='middle'%3EG%3C/text%3E%3C/svg%3E">
+
+<!-- Manifest embebido como data URI para que funcione offline sin servidor -->
+<link rel="manifest" href='data:application/manifest+json,{"name":"Greek God Protocol","short_name":"Greek God","description":"Rutina personal","start_url":".","display":"standalone","orientation":"portrait","background_color":"%230a0a0a","theme_color":"%230a0a0a","icons":[{"src":"data:image/svg%2Bxml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 512 512%22%3E%3Crect width=%22512%22 height=%22512%22 fill=%22%230a0a0a%22 rx=%22100%22/%3E%3Ctext x=%22256%22 y=%22340%22 font-family=%22Georgia,serif%22 font-style=%22italic%22 font-weight=%22900%22 font-size=%22340%22 fill=%22%23d4ff3a%22 text-anchor=%22middle%22%3EG%3C/text%3E%3C/svg%3E","sizes":"512x512","type":"image/svg+xml","purpose":"any"}]}'>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,900&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --bg-2: #121212;
+    --bg-3: #1a1a1a;
+    --border: #262626;
+    --border-2: #333;
+    --text: #f5f5f5;
+    --text-2: #a3a3a3;
+    --text-3: #666;
+    --accent: #d4ff3a;
+    --accent-2: #ff4d2e;
+    --gold: #c9a961;
+    --green: #4ade80;
+    --red: #f87171;
+    --blue: #60a5fa;
+
+    /* Safe area para iPhone notch */
+    --sat: env(safe-area-inset-top);
+    --sab: env(safe-area-inset-bottom);
+    --sal: env(safe-area-inset-left);
+    --sar: env(safe-area-inset-right);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+    min-height: 100vh;
+    overflow-x: hidden;
+    overscroll-behavior-y: contain;
+    padding-top: var(--sat);
+    padding-bottom: var(--sab);
+  }
+
+  /* Selección de texto */
+  ::selection { background: var(--accent); color: var(--bg); }
+
+  /* Scrollbar custom */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border-2); }
+
+  /* Grain overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  /* ============ INSTALL PROMPT BANNER ============ */
+  .install-banner {
+    position: fixed;
+    bottom: calc(1rem + var(--sab));
+    left: 1rem;
+    right: 1rem;
+    background: var(--bg-2);
+    border: 1px solid var(--accent);
+    padding: 1rem;
+    z-index: 150;
+    display: none;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    animation: slideUp 0.4s ease;
+  }
+  @keyframes slideUp {
+    from { transform: translateY(120%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  .install-banner.show { display: flex; }
+  .install-banner .ico {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 900;
+    color: var(--accent);
+    font-size: 2rem;
+    line-height: 1;
+  }
+  .install-banner .txt { flex: 1; font-size: 0.8rem; line-height: 1.4; }
+  .install-banner .txt strong { display: block; font-weight: 600; margin-bottom: 0.2rem; }
+  .install-banner .txt span { color: var(--text-2); font-size: 0.7rem; }
+  .install-banner button {
+    background: var(--accent);
+    color: var(--bg);
+    border: none;
+    padding: 0.6rem 1rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .install-banner .close {
+    background: transparent;
+    color: var(--text-3);
+    padding: 0.5rem;
+    font-size: 1.2rem;
+  }
+
+  /* ============ HEADER ============ */
+  .hero {
+    position: relative;
+    padding: 3rem 1.5rem 2rem;
+    padding-left: max(1.5rem, var(--sal));
+    padding-right: max(1.5rem, var(--sar));
+    border-bottom: 1px solid var(--border);
+    background:
+      radial-gradient(ellipse 800px 400px at 20% 0%, rgba(212, 255, 58, 0.06), transparent),
+      radial-gradient(ellipse 600px 300px at 90% 100%, rgba(255, 77, 46, 0.04), transparent),
+      var(--bg);
+  }
+
+  .hero-grid {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 2rem;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .brand::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.8); }
+  }
+
+  h1.title {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(2.5rem, 9vw, 5.5rem);
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    margin-bottom: 0.5rem;
+  }
+
+  h1.title em {
+    font-style: italic;
+    font-weight: 900;
+    color: var(--accent);
+  }
+
+  .subtitle {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--text-2);
+    letter-spacing: 0.08em;
+    max-width: 500px;
+    margin-top: 1rem;
+    line-height: 1.6;
+  }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    min-width: 240px;
+  }
+
+  .stat-card {
+    border: 1px solid var(--border);
+    padding: 0.85rem;
+    background: var(--bg-2);
+  }
+
+  .stat-card .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.55rem;
+    color: var(--text-3);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+
+  .stat-card .value {
+    font-family: 'Fraunces', serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 1;
+  }
+
+  .stat-card .value small {
+    font-size: 0.65rem;
+    color: var(--text-2);
+    margin-left: 0.2rem;
+  }
+
+  /* ============ NAV ============ */
+  nav.tabs {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(10, 10, 10, 0.94);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding-left: var(--sal);
+    padding-right: var(--sar);
+  }
+
+  .tabs-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .tabs-inner::-webkit-scrollbar { display: none; }
+
+  .tab {
+    flex-shrink: 0;
+    padding: 1.1rem 1.2rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    background: none;
+    border: none;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    white-space: nowrap;
+    font-weight: 500;
+  }
+
+  .tab:hover, .tab:active { color: var(--text); }
+
+  .tab.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  /* ============ MAIN ============ */
+  main {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+    padding-left: max(1.5rem, var(--sal));
+    padding-right: max(1.5rem, var(--sar));
+  }
+
+  .panel { display: none; animation: fadeIn 0.4s ease; }
+  .panel.active { display: block; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ============ DAY HEADER ============ */
+  .day-header {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 1.5rem;
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .day-number {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 4rem;
+    line-height: 0.8;
+    color: var(--accent);
+  }
+
+  .day-title h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 2rem;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+  }
+
+  .day-title h2 em {
+    font-style: italic;
+    color: var(--text-2);
+    font-weight: 300;
+  }
+
+  .day-meta {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-3);
+  }
+
+  .day-meta span {
+    padding: 0.25rem 0.5rem;
+    border: 1px solid var(--border);
+    background: var(--bg-2);
+  }
+
+  .day-meta span.accent {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .day-info {
+    text-align: right;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--text-2);
+    line-height: 1.6;
+  }
+
+  .day-info strong {
+    display: block;
+    color: var(--text);
+    font-size: 1.3rem;
+    font-weight: 700;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+  }
+
+  /* ============ EXERCISE LIST ============ */
+  .ex-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .ex-row {
+    display: grid;
+    grid-template-columns: 50px 1fr auto auto auto 36px;
+    gap: 1rem;
+    align-items: center;
+    padding: 1.1rem 1.25rem;
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+  }
+
+  .ex-row:hover, .ex-row:active {
+    border-color: var(--accent);
+    background: var(--bg-3);
+  }
+
+  @media (hover: hover) {
+    .ex-row:hover { transform: translateX(4px); }
+  }
+
+  .ex-row::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--accent);
+    transform: scaleY(0);
+    transition: transform 0.2s;
+  }
+
+  .ex-row:hover::before, .ex-row:active::before { transform: scaleY(1); }
+
+  .ex-num {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 1.8rem;
+    color: var(--text-3);
+    line-height: 1;
+  }
+
+  .ex-main h3 {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .ex-main p {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--text-3);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .ex-stat {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    text-align: center;
+    min-width: 55px;
+  }
+
+  .ex-stat .lbl {
+    color: var(--text-3);
+    font-size: 0.5rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.2rem;
+  }
+
+  .ex-stat .val {
+    color: var(--text);
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+
+  .ex-stat .val.accent { color: var(--accent); }
+
+  .ex-icon {
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--border-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    font-size: 1.2rem;
+  }
+
+  .ex-row:hover .ex-icon, .ex-row:active .ex-icon {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: var(--bg);
+  }
+
+  /* MÓVIL: tarjetas más compactas */
+  @media (max-width: 768px) {
+    .ex-row {
+      grid-template-columns: 36px 1fr auto;
+      gap: 0.75rem;
+      padding: 1rem;
+    }
+    .ex-num { font-size: 1.4rem; }
+    .ex-main h3 { font-size: 0.95rem; }
+    .ex-main p { font-size: 0.55rem; }
+    .ex-stat:not(.primary) { display: none; }
+    .ex-stat.primary {
+      text-align: right;
+      min-width: auto;
+    }
+    .ex-stat.primary .val { font-size: 0.85rem; }
+    .ex-icon { display: none; }
+  }
+
+  /* ============ MODAL ============ */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+    padding: 1rem;
+    padding-top: max(1rem, var(--sat));
+    padding-bottom: max(1rem, var(--sab));
+  }
+
+  .modal-overlay.active { display: flex; }
+
+  .modal {
+    background: var(--bg-2);
+    border: 1px solid var(--border-2);
+    max-width: 900px;
+    width: 100%;
+    max-height: 92vh;
+    overflow-y: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    animation: modalIn 0.3s ease;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  @keyframes modalIn {
+    from { opacity: 0; transform: scale(0.96); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  .modal-img {
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    position: relative;
+    border-right: 1px solid var(--border);
+  }
+
+  .modal-img img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+
+  .modal-img .placeholder {
+    text-align: center;
+    padding: 2rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--text-3);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    line-height: 1.8;
+  }
+
+  .modal-img .placeholder strong {
+    color: var(--accent);
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 1rem;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  .modal-img .placeholder a {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.65rem;
+  }
+
+  .modal-content {
+    padding: 1.75rem;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 40px;
+    height: 40px;
+    background: var(--bg-3);
+    border: 1px solid var(--border-2);
+    color: var(--text);
+    font-size: 1.4rem;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .modal-close:hover, .modal-close:active {
+    background: var(--accent-2);
+    border-color: var(--accent-2);
+  }
+
+  .modal-content h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+  }
+
+  .modal-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .modal-stat {
+    padding: 0.75rem;
+    border: 1px solid var(--border);
+    background: var(--bg);
+  }
+
+  .modal-stat .l {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.55rem;
+    color: var(--text-3);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+
+  .modal-stat .v {
+    font-family: 'Fraunces', serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+  }
+
+  .modal-section { margin-top: 1.25rem; }
+
+  .modal-section h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+
+  .modal-section p {
+    font-size: 0.85rem;
+    color: var(--text-2);
+    line-height: 1.6;
+  }
+
+  /* ============ INFO PANELS ============ */
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .info-card {
+    padding: 1.25rem;
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    transition: border-color 0.2s;
+  }
+
+  .info-card:hover { border-color: var(--border-2); }
+
+  .info-card .ico {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 2.2rem;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .info-card h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .info-card p {
+    font-size: 0.82rem;
+    color: var(--text-2);
+    line-height: 1.6;
+  }
+
+  /* ============ SECTION TITLE ============ */
+  .section-title {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+
+  .section-title h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 1.9rem;
+    letter-spacing: -0.02em;
+  }
+
+  .section-title h2 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .section-title .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-3);
+  }
+
+  /* ============ DATA TABLE ============ */
+  .table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border);
+  }
+
+  table.data {
+    width: 100%;
+    min-width: 600px;
+    border-collapse: collapse;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+  }
+
+  table.data th {
+    text-align: left;
+    padding: 0.75rem 0.9rem;
+    border-bottom: 1px solid var(--border-2);
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    font-weight: 400;
+    background: var(--bg-2);
+    position: sticky;
+    top: 0;
+  }
+
+  table.data td {
+    padding: 0.85rem 0.9rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-2);
+  }
+
+  table.data tr:hover td, table.data tr:active td { background: var(--bg-2); color: var(--text); }
+
+  table.data .first {
+    color: var(--text);
+    font-weight: 500;
+    font-family: 'Inter Tight', sans-serif;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 0.2rem 0.55rem;
+    font-size: 0.55rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border: 1px solid var(--border-2);
+    white-space: nowrap;
+  }
+  .badge.ok { color: var(--green); border-color: var(--green); }
+  .badge.warn { color: var(--gold); border-color: var(--gold); }
+  .badge.bad { color: var(--red); border-color: var(--red); }
+  .badge.info { color: var(--blue); border-color: var(--blue); }
+  .badge.accent { color: var(--accent); border-color: var(--accent); }
+
+  /* ============ PROGRESSION ============ */
+  .prog-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .prog-week {
+    padding: 0.9rem 0.6rem;
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    text-align: center;
+  }
+
+  .prog-week.deload {
+    border-color: var(--accent-2);
+    background: rgba(255, 77, 46, 0.05);
+  }
+
+  .prog-week .w {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin-bottom: 0.5rem;
+  }
+
+  .prog-week .load {
+    font-family: 'Fraunces', serif;
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 0.3rem;
+  }
+
+  .prog-week .reps {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--text-2);
+  }
+
+  /* ============ NUTRITION ============ */
+  .macro-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 0.75rem;
+    margin: 1.5rem 0;
+  }
+
+  .macro-card {
+    padding: 1.25rem;
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .macro-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--c, var(--accent));
+  }
+
+  .macro-card .ml {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin-bottom: 0.4rem;
+  }
+
+  .macro-card .mv {
+    font-family: 'Fraunces', serif;
+    font-size: 2.2rem;
+    font-weight: 400;
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+
+  .macro-card .mv small {
+    font-size: 0.85rem;
+    color: var(--text-2);
+  }
+
+  .macro-card .mp {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--text-2);
+  }
+
+  /* ============ TARGETS ============ */
+  .targets {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+  }
+
+  .target-card {
+    padding: 1.75rem;
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    position: relative;
+  }
+
+  .target-card .tg-head {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+
+  .target-card h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: 2.5rem;
+    line-height: 1;
+    margin-bottom: 1.25rem;
+  }
+
+  .target-card ul { list-style: none; }
+
+  .target-card li {
+    padding: 0.55rem 0;
+    border-bottom: 1px solid var(--border);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+    color: var(--text-2);
+  }
+
+  .target-card li:last-child { border: none; }
+
+  .target-card li strong {
+    color: var(--text);
+    font-weight: 500;
+    text-align: right;
+  }
+
+  /* ============ BLACKLIST ============ */
+  .black-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 0.75rem;
+  }
+
+  .black-card {
+    padding: 1.1rem;
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--red);
+  }
+
+  .black-card h4 {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 500;
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    line-height: 1.3;
+  }
+
+  .black-card h4::before {
+    content: '✕';
+    color: var(--red);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .black-card p {
+    font-size: 0.8rem;
+    color: var(--text-2);
+    line-height: 1.5;
+  }
+
+  /* ============ INSTALL GUIDE ============ */
+  .install-section {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: var(--bg-2);
+    border: 1px solid var(--accent);
+  }
+
+  .install-section h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    color: var(--accent);
+  }
+
+  .install-section .steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .install-step {
+    padding: 1rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+  }
+
+  .install-step .num {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 2rem;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .install-step h4 {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 500;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .install-step p {
+    font-size: 0.78rem;
+    color: var(--text-2);
+    line-height: 1.5;
+  }
+
+  .install-step code {
+    background: var(--bg-3);
+    padding: 0.1rem 0.4rem;
+    font-size: 0.7rem;
+    color: var(--accent);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* ============ FOOTER ============ */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2.5rem 1.5rem;
+    padding-bottom: calc(2.5rem + var(--sab));
+    text-align: center;
+    margin-top: 3rem;
+  }
+
+  footer p {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    line-height: 2;
+  }
+
+  footer p em {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    color: var(--accent);
+    font-size: 0.9rem;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 768px) {
+    .hero { padding: 2rem 1.25rem 1.5rem; }
+    .hero-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .hero-stats { min-width: 0; }
+    .day-header { grid-template-columns: 1fr; text-align: left; gap: 0.75rem; }
+    .day-info { text-align: left; }
+    .day-number { font-size: 3rem; }
+    .day-title h2 { font-size: 1.75rem; }
+    .modal { grid-template-columns: 1fr; max-height: 95vh; }
+    .modal-img { min-height: 250px; border-right: none; border-bottom: 1px solid var(--border); }
+    .modal-content { padding: 1.25rem; }
+    .prog-grid { grid-template-columns: repeat(2, 1fr); }
+    main { padding: 1.5rem 1rem 3rem; }
+    .section-title h2 { font-size: 1.6rem; }
+  }
+
+  /* Standalone mode (instalado como PWA) */
+  @media (display-mode: standalone) {
+    .install-banner { display: none !important; }
+    .install-section { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ INSTALL BANNER ============ -->
+<div class="install-banner" id="install-banner">
+  <div class="ico">G</div>
+  <div class="txt">
+    <strong>Instala como app</strong>
+    <span id="install-instruction">Toca compartir → "Añadir a pantalla de inicio"</span>
+  </div>
+  <button id="install-btn" style="display:none;">Instalar</button>
+  <button class="close" id="install-close">×</button>
+</div>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="hero-grid">
+    <div>
+      <div class="brand">Greek God Protocol · v1.0</div>
+      <h1 class="title">Construir<br><em>el físico.</em></h1>
+      <p class="subtitle">// Lean bulk · 2–3 años · prioridad estética: deltoides 3D, V-taper, cintura estrecha</p>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-card">
+        <div class="label">Peso</div>
+        <div class="value">61<small>kg</small></div>
+      </div>
+      <div class="stat-card">
+        <div class="label">BF est.</div>
+        <div class="value">~8<small>%</small></div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Target 12m</div>
+        <div class="value">72<small>kg</small></div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Kcal/día</div>
+        <div class="value">3000</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ NAV ============ -->
+<nav class="tabs">
+  <div class="tabs-inner">
+    <button class="tab active" data-tab="lun">Lun · Push 1</button>
+    <button class="tab" data-tab="mar">Mar · Lower</button>
+    <button class="tab" data-tab="mie">Mié · Pull</button>
+    <button class="tab" data-tab="jue">Jue · Push 2</button>
+    <button class="tab" data-tab="vie">Vie · Arms+Delt</button>
+    <button class="tab" data-tab="vol">Volumen</button>
+    <button class="tab" data-tab="prog">Progresión</button>
+    <button class="tab" data-tab="nutr">Nutrición</button>
+    <button class="tab" data-tab="metr">Métricas</button>
+    <button class="tab" data-tab="black">Lista Negra</button>
+    <button class="tab" data-tab="guia">Cómo leer</button>
+    <button class="tab" data-tab="install">Instalar</button>
+  </div>
+</nav>
+
+<main>
+
+<!-- ============ DAYS ============ -->
+<div id="days-container"></div>
+
+<!-- ============ VOLUME PANEL ============ -->
+<section class="panel" data-panel="vol">
+  <div class="section-title">
+    <h2>Volumen <em>semanal</em></h2>
+    <span class="tag">Sets efectivos · RIR 0–2</span>
+  </div>
+  <p style="color: var(--text-2); margin-bottom: 1.5rem; max-width: 700px; font-size: 0.9rem;">
+    Empiezo en MAV bajo, no MRV. A 61 kg el límite es <em style="color:var(--accent); font-style:normal;">recovery + calorías</em>, no capacidad de tolerar series. Crezco más con 14 sets recuperadas que con 22 a medias.
+  </p>
+  <div class="table-wrap">
+    <table class="data">
+      <thead>
+        <tr>
+          <th>Grupo muscular</th>
+          <th>Sets/sem</th>
+          <th>MEV</th>
+          <th>MAV</th>
+          <th>MRV</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="vol-table"></tbody>
+    </table>
+  </div>
+
+  <div class="section-title" style="margin-top:2.5rem;">
+    <h2>Frecuencia <em>por grupo</em></h2>
+    <span class="tag">Casi todo 2x/semana</span>
+  </div>
+  <div class="table-wrap">
+    <table class="data">
+      <thead>
+        <tr><th>Grupo</th><th>Frecuencia</th><th>Días</th></tr>
+      </thead>
+      <tbody id="freq-table"></tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============ PROGRESSION PANEL ============ -->
+<section class="panel" data-panel="prog">
+  <div class="section-title">
+    <h2>Doble <em>progresión</em></h2>
+    <span class="tag">4 semanas + 1 deload</span>
+  </div>
+  <p style="color: var(--text-2); margin-bottom: 1.5rem; max-width: 700px; font-size: 0.9rem;">
+    Ejemplo: Press inclinado mancuerna 4×6–8 RIR 1–2. Misma carga hasta tope de reps en todas las series, luego sube.
+  </p>
+  <div class="prog-grid">
+    <div class="prog-week">
+      <div class="w">Sem 1</div>
+      <div class="load">25 kg</div>
+      <div class="reps">6,6,6,6</div>
+    </div>
+    <div class="prog-week">
+      <div class="w">Sem 2</div>
+      <div class="load">25 kg</div>
+      <div class="reps">7,7,6,6</div>
+    </div>
+    <div class="prog-week">
+      <div class="w">Sem 3</div>
+      <div class="load">25 kg</div>
+      <div class="reps">8,8,7,6</div>
+    </div>
+    <div class="prog-week">
+      <div class="w">Sem 4</div>
+      <div class="load">25 kg</div>
+      <div class="reps">8,8,8,7</div>
+    </div>
+    <div class="prog-week deload">
+      <div class="w" style="color:var(--accent-2);">DELOAD</div>
+      <div class="load">20 kg</div>
+      <div class="reps">50% vol</div>
+    </div>
+  </div>
+
+  <div class="info-grid">
+    <div class="info-card">
+      <div class="ico">01</div>
+      <h3>Microplates obligatorios</h3>
+      <p>Compra discos de 0.5 y 1.25 kg. Para aislamiento y bíceps el salto de 13.5 → 15.5 kg es 14.8%: demasiado.</p>
+    </div>
+    <div class="info-card">
+      <div class="ico">02</div>
+      <h3>Curl estancado</h3>
+      <p>Bajar a 11.25 kg × 3×8–10 RIR 0–1 durante 3 semanas. Vuelves a 13.5 kg con margen en 6 semanas.</p>
+    </div>
+    <div class="info-card">
+      <div class="ico">03</div>
+      <h3>Dominadas lastradas</h3>
+      <p>Progresar +1.25 kg cada 2 sesiones cuando llegues a 8 reps RIR 1.</p>
+    </div>
+    <div class="info-card">
+      <div class="ico">04</div>
+      <h3>Señales de deload</h3>
+      <p>2 sesiones sin sumar reps · fuerza ↓>5% · sueño basura 3 noches · libido baja · motivación muerta.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NUTRITION PANEL ============ -->
+<section class="panel" data-panel="nutr">
+  <div class="section-title">
+    <h2>Nutrición <em>mínima viable</em></h2>
+    <span class="tag">TDEE 2615 · +400 kcal</span>
+  </div>
+
+  <div class="macro-grid">
+    <div class="macro-card" style="--c: var(--accent);">
+      <div class="ml">Calorías</div>
+      <div class="mv">3000<small> kcal</small></div>
+      <div class="mp">Superávit ~400 kcal/día</div>
+    </div>
+    <div class="macro-card" style="--c: var(--red);">
+      <div class="ml">Proteína</div>
+      <div class="mv">140<small> g</small></div>
+      <div class="mp">2.3 g/kg · 4 dosis ~35g</div>
+    </div>
+    <div class="macro-card" style="--c: var(--gold);">
+      <div class="ml">Grasa</div>
+      <div class="mv">80<small> g</small></div>
+      <div class="mp">1.3 g/kg · 720 kcal</div>
+    </div>
+    <div class="macro-card" style="--c: var(--blue);">
+      <div class="ml">Carbs</div>
+      <div class="mv">430<small> g</small></div>
+      <div class="mp">7 g/kg · 1720 kcal</div>
+    </div>
+  </div>
+
+  <div class="info-grid">
+    <div class="info-card">
+      <div class="ico">i</div>
+      <h3>Frecuencia mínima</h3>
+      <p>4 comidas sólidas + 1 shake. Pre 60–90min: 0.5g carb/kg + 30g prot. Post 2h: 1g carb/kg + 40g prot.</p>
+    </div>
+    <div class="info-card">
+      <div class="ico">ii</div>
+      <h3>Shake de respaldo</h3>
+      <p>~750 kcal: 100g avena + 300ml leche entera + 1 plátano + 30g whey + 20g mantequilla de maní.</p>
+    </div>
+    <div class="info-card">
+      <div class="ico">iii</div>
+      <h3>Carbs preferidos</h3>
+      <p>Densos no fibrosos: arroz blanco, pasta, pan, avena, papa, frutas. Fibra excesiva = enemiga del superávit.</p>
+    </div>
+    <div class="info-card">
+      <div class="ico">iv</div>
+      <h3>Ajuste mensual</h3>
+      <p>Ganas &lt;0.5 kg → +200 kcal. Ganas &gt;1.5 kg → −150 kcal. 0.5–1 kg/mes = óptimo, no tocar.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ METRICS PANEL ============ -->
+<section class="panel" data-panel="metr">
+  <div class="section-title">
+    <h2>Métricas de <em>progreso</em></h2>
+    <span class="tag">Mes a mes</span>
+  </div>
+
+  <div class="info-grid">
+    <div class="info-card">
+      <div class="ico">A</div>
+      <h3>Peso semanal</h3>
+      <p>Sábado mañana, en ayunas, post-baño. Una sola medición por semana evita ruido diario.</p>
+    </div>
+    <div class="info-card">
+      <div class="ico">B</div>
+      <h3>Medidas mensuales</h3>
+      <p>Cinta · cintura (ombligo, relajada), <strong style="color:var(--accent)">hombros (KPI #1)</strong>, pecho, bíceps flexionado, muslo 15cm sobre rótula, gemelo.</p>
+    </div>
+    <div class="info-card">
+      <div class="ico">C</div>
+      <h3>Fotos mensuales</h3>
+      <p>Frente, espalda, lateral · relajado y flexionado · misma luz, misma hora.</p>
+    </div>
+    <div class="info-card">
+      <div class="ico">D</div>
+      <h3>PRs en rutina</h3>
+      <p>Press inc DB · curl DB inclinado · dominada lastrada. Si hay progresión, hay hipertrofia.</p>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:2.5rem;">
+    <h2>Targets <em>3 / 6 / 12 meses</em></h2>
+    <span class="tag">KPIs concretos</span>
+  </div>
+
+  <div class="targets">
+    <div class="target-card">
+      <div class="tg-head">/ 03 meses</div>
+      <h3>64 kg</h3>
+      <ul>
+        <li><span>Press inc DB</span><strong>28 kg × 6–8</strong></li>
+        <li><span>Curl DB inc</span><strong>13.5 kg × 10</strong></li>
+        <li><span>Dominada</span><strong>+10 kg</strong></li>
+        <li><span>Hombros</span><strong>+1.5 cm</strong></li>
+        <li><span>Cintura</span><strong>+1 cm máx</strong></li>
+      </ul>
+    </div>
+    <div class="target-card">
+      <div class="tg-head">/ 06 meses</div>
+      <h3>67–68 kg</h3>
+      <ul>
+        <li><span>Press inc DB</span><strong>32 kg</strong></li>
+        <li><span>Curl DB</span><strong>16 kg × 8</strong></li>
+        <li><span>Dominada</span><strong>+17.5 kg</strong></li>
+        <li><span>Hombros</span><strong>+3 cm</strong></li>
+      </ul>
+    </div>
+    <div class="target-card" style="border-color: var(--accent);">
+      <div class="tg-head">/ 12 meses</div>
+      <h3>72–74 kg</h3>
+      <ul>
+        <li><span>Press inc DB</span><strong>38–40 kg</strong></li>
+        <li><span>Curl DB</span><strong>20 kg × 8</strong></li>
+        <li><span>Dominada</span><strong>+27.5 kg × 8</strong></li>
+        <li><span>Hombros</span><strong>+6–7 cm</strong></li>
+        <li><span>Cintura</span><strong>+3–4 cm máx</strong></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BLACKLIST PANEL ============ -->
+<section class="panel" data-panel="black">
+  <div class="section-title">
+    <h2>Lista <em>Negra</em></h2>
+    <span class="tag">Qué NO hacer · y por qué</span>
+  </div>
+  <div class="black-grid" id="black-grid"></div>
+</section>
+
+<!-- ============ GUIDE PANEL ============ -->
+<section class="panel" data-panel="guia">
+  <div class="section-title">
+    <h2>Cómo <em>leer</em> la rutina</h2>
+    <span class="tag">Glosario rápido</span>
+  </div>
+
+  <div class="info-grid">
+    <div class="info-card">
+      <div class="ico">S×R</div>
+      <h3>Series × Reps</h3>
+      <p><strong style="color:var(--accent)">4×6–8</strong> = 4 series, entre 6 y 8 reps por serie. Llegas a 8 limpias en todas → sube carga.</p>
+    </div>
+    <div class="info-card">
+      <div class="ico">RIR</div>
+      <h3>Reps in Reserve</h3>
+      <p>Cuántas reps te quedan en el tanque al terminar la serie. <strong>RIR 1–2</strong> en compuestos, <strong>RIR 0–1</strong> en aislamiento.</p>
+    </div>
+    <div class="info-card">
+      <div class="ico">↕</div>
+      <h3>Tempo</h3>
+      <p><strong>3-0-1-1</strong>: 3s bajando · 0s pausa abajo · 1s subiendo · 1s pausa arriba. Sin notación = controlado (~2-0-1-0).</p>
+    </div>
+    <div class="info-card">
+      <div class="ico">⏱</div>
+      <h3>Descanso</h3>
+      <p><strong>2–4 min</strong> en compuestos para recuperar fuerza. <strong>90s–2 min</strong> en aislamiento. No menos.</p>
+    </div>
+    <div class="info-card">
+      <div class="ico">★</div>
+      <h3>Click en ejercicio</h3>
+      <p>Toca cualquier ejercicio en la lista para abrir el detalle con GIF y justificación científica.</p>
+    </div>
+    <div class="info-card">
+      <div class="ico">⚡</div>
+      <h3>Asimetría push/pull</h3>
+      <p>Push 2x · Pull 1x consolidado. Lat delt 3x semanales = prioridad estética nº1.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INSTALL PANEL ============ -->
+<section class="panel" data-panel="install">
+  <div class="section-title">
+    <h2>Instalar <em>como app</em></h2>
+    <span class="tag">iPhone · Android · Desktop</span>
+  </div>
+
+  <p style="color: var(--text-2); margin-bottom: 1.5rem; max-width: 700px; font-size: 0.9rem;">
+    Esta página es una <em style="color:var(--accent); font-style:normal;">Progressive Web App</em>: se instala como app nativa en tu teléfono, abre a pantalla completa y queda en tu home screen como cualquier otra app.
+  </p>
+
+  <div class="install-section">
+    <h3>📱 iPhone (Safari)</h3>
+    <p style="font-size: 0.85rem; color: var(--text-2);">Debes abrir esta página en <strong>Safari</strong>, no en Chrome.</p>
+    <div class="steps">
+      <div class="install-step">
+        <div class="num">01</div>
+        <h4>Abre en Safari</h4>
+        <p>Si tienes el archivo guardado, súbelo a iCloud Drive o Google Drive y ábrelo desde Safari.</p>
+      </div>
+      <div class="install-step">
+        <div class="num">02</div>
+        <h4>Botón compartir</h4>
+        <p>Toca el ícono <code>⬆</code> (cuadrado con flecha arriba) en la barra inferior.</p>
+      </div>
+      <div class="install-step">
+        <div class="num">03</div>
+        <h4>"A pantalla de inicio"</h4>
+        <p>Baja en el menú y toca <code>Agregar a pantalla de inicio</code>. Luego <code>Agregar</code>.</p>
+      </div>
+      <div class="install-step">
+        <div class="num">04</div>
+        <h4>Listo</h4>
+        <p>El ícono "G" aparece en tu home. Ábrela y funciona a pantalla completa, sin barra del navegador.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="install-section">
+    <h3>🤖 Android (Chrome)</h3>
+    <div class="steps">
+      <div class="install-step">
+        <div class="num">01</div>
+        <h4>Abre en Chrome</h4>
+        <p>Carga la página. Si tienes el archivo, súbelo a Drive y ábrelo desde Chrome.</p>
+      </div>
+      <div class="install-step">
+        <div class="num">02</div>
+        <h4>Menú ⋮</h4>
+        <p>Toca los 3 puntos arriba a la derecha.</p>
+      </div>
+      <div class="install-step">
+        <div class="num">03</div>
+        <h4>"Instalar app"</h4>
+        <p>Toca <code>Instalar aplicación</code> o <code>Añadir a la pantalla principal</code>.</p>
+      </div>
+      <div class="install-step">
+        <div class="num">04</div>
+        <h4>Listo</h4>
+        <p>App nativa en tu lanzador, con su propio ícono y pantalla completa.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="install-section">
+    <h3>💻 Computadora (Chrome / Edge)</h3>
+    <div class="steps">
+      <div class="install-step">
+        <div class="num">01</div>
+        <h4>Barra de URL</h4>
+        <p>Busca el ícono de instalación <code>⊕</code> a la derecha en la barra de direcciones.</p>
+      </div>
+      <div class="install-step">
+        <div class="num">02</div>
+        <h4>Click instalar</h4>
+        <p>Confirma. La app se abre en su propia ventana, sin pestañas ni barra de Chrome.</p>
+      </div>
+      <div class="install-step">
+        <div class="num">03</div>
+        <h4>Acceso directo</h4>
+        <p>Queda en tu Dock (Mac) o menú inicio (Windows). Puedes anclarla.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="install-section" style="border-color: var(--accent-2);">
+    <h3 style="color: var(--accent-2);">⚠️ Importante: necesitas un host con HTTPS</h3>
+    <p style="font-size: 0.9rem; color: var(--text-2); margin: 0.75rem 0;">
+      Para que la instalación PWA funcione 100% (no solo el acceso directo), el archivo debe servirse desde una URL HTTPS. <strong style="color: var(--text);">3 opciones gratis en 2 minutos</strong>:
+    </p>
+
+    <div class="steps">
+      <div class="install-step">
+        <div class="num">A</div>
+        <h4>GitHub Pages (gratis, recomendado)</h4>
+        <p>1. Crea cuenta en github.com<br>
+        2. Crea un repo público <code>greek-god</code><br>
+        3. Sube el archivo como <code>index.html</code><br>
+        4. Settings → Pages → Branch: main<br>
+        5. Tu URL: <code>tuusuario.github.io/greek-god</code></p>
+      </div>
+      <div class="install-step">
+        <div class="num">B</div>
+        <h4>Netlify Drop (más rápido)</h4>
+        <p>1. Ve a <code>app.netlify.com/drop</code><br>
+        2. Arrastra el archivo HTML<br>
+        3. Te da una URL HTTPS al instante<br>
+        4. Abre esa URL en tu celular e instala</p>
+      </div>
+      <div class="install-step">
+        <div class="num">C</div>
+        <h4>Google Drive (más fácil, sin PWA)</h4>
+        <p>1. Sube el archivo a Drive<br>
+        2. Compártelo "cualquiera con el enlace"<br>
+        3. Abre el enlace en el celular<br>
+        4. Funciona como web, sin instalación PWA pero accesible siempre</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ MODAL ============ -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <button class="modal-close" id="modal-close">×</button>
+    <div class="modal-img" id="modal-img"></div>
+    <div class="modal-content" id="modal-content"></div>
+  </div>
+</div>
+
+<footer>
+  <p>// Sin disclaimers. Sin relleno motivacional.<br><em>Sit at MAV, not MRV.</em></p>
+</footer>
+
+<script>
+// ============ DATA ============
+const DAYS = {
+  lun: {
+    num: '01', title: 'Push', subtitle: 'pecho énfasis',
+    duration: '~75 min', location: 'Gym', sets: 20,
+    tags: ['gym', 'push 1', 'upper chest', 'lat delt'],
+    exercises: [
+      { name: 'Press inclinado mancuerna', detail: 'banco 30°', sets: '4 × 6–8', rir: '1–2', tempo: '2-1-1-0', rest: '3 min',
+        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2023/03/30-degree-incline-dumbbell-bench-press.gif',
+        why: 'Lift de chequeo + énfasis upper chest. 30° > 45° para clavicular sin invadir delt anterior.' },
+      { name: 'Press plano máquina', detail: 'pectoral medio', sets: '3 × 8–10', rir: '1', tempo: '—', rest: '2.5 min',
+        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2023/02/machine-chest-press.gif',
+        why: 'Fallo seguro sin estabilización, volumen extra de pecho.' },
+      { name: 'Cruces polea inclinada', detail: 'low-to-high', sets: '3 × 10–12', rir: '0–1', tempo: '2-0-1-1', rest: '90 s',
+        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/05/low-to-high-cable-fly.gif',
+        why: 'Upper chest en stretch + tensión constante. Mejor curva de fuerza que DB fly.' },
+      { name: 'Press militar mancuerna sentado', detail: 'delt anterior', sets: '3 × 8–10', rir: '1', tempo: '—', rest: '2.5 min',
+        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2023/06/seated-dumbbell-shoulder-press.gif',
+        why: 'Compound delt anterior; sentado aísla lumbar.' },
+      { name: 'Elevaciones laterales mancuerna', detail: 'de pie · prioridad #1', sets: '4 × 10–15', rir: '0–1', tempo: '2-0-1-1', rest: '90 s',
+        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/04/dumbbell-lateral-raise.gif',
+        why: 'Prioridad estética máxima. Codo ligeramente flexionado, no encogimiento de trapecio.' },
+      { name: 'Extensión tríceps cuerda overhead', detail: 'long head bias', sets: '3 × 10–12', rir: '0–1', tempo: '3-0-1-1', rest: '90 s',
+        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2023/02/overhead-cable-tricep-extension.gif',
+        why: 'Cabeza larga del tríceps en stretch (Beardsley: long-length bias).' }
+    ]
+  },
+  mar: {
+    num: '02', title: 'Lower', subtitle: 'tren inferior',
+    duration: '~75 min', location: 'Gym', sets: 19,
+    tags: ['gym', 'cuádriceps', 'glúteo', 'hamstring'],
+    exercises: [
+      { name: 'Sentadilla barra alta', detail: 'high bar · paralelo', sets: '4 × 6–8', rir: '1–2', tempo: '2-1-1-0', rest: '3–4 min',
+        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/03/high-bar-back-squat.gif',
+        why: 'Compound axial. Stance medio. Profundidad paralelo o ligeramente abajo.' },
+      { name: 'Prensa 45°', detail: 'pies medios', sets: '3 × 10–12', rir: '1', tempo: '—', rest: '3 min',
+        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/04/45-degree-leg-press.gif',
+        why: 'Sobrecarga cuádriceps/glúteo sin estrés axial adicional.' },
+      { name: 'Hip thrust máquina', detail: 'o barra acolchada', sets: '3 × 8–12', rir: '0–1', tempo: '2-1-1-0', rest: '2 min',
+        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/06/barbell-hip-thrust.gif',
+        why: 'Glúteo alto para line de V-taper inferior. Sin erectores.' },
+      { name: 'Curl femoral tumbado', detail: 'hamstring isolation', sets: '4 × 8–12', rir: '0–1', tempo: '3-0-1-1', rest: '90 s',
+        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/11/lying-leg-curl.gif',
+        why: 'Hamstrings — punto débil esperado por ausencia de deadlift.' },
+      { name: 'Extensión cuádriceps', detail: 'último set drop', sets: '2 × 12–15', rir: '0', tempo: '2-0-1-1', rest: '90 s',
+        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/09/leg-extension.gif',
+        why: 'VMO / tear drop. Drop final hasta fallo.' },
+      { name: 'Gemelos de pie máquina', detail: 'pausa 2s stretch', sets: '3 × 8–12', rir: '0–1', tempo: '2-0-1-2', rest: '90 s',
+        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/12/standing-calf-raise.gif',
+        why: 'Pausa 2s en stretch — única forma efectiva de progresar gemelos.' }
+    ]
+  },
+  mie: {
+    num: '03', title: 'Pull', subtitle: 'espalda · bíceps · rear delt',
+    duration: '~75 min', location: 'Casa · Marcy', sets: 24,
+    tags: ['casa', 'pull', 'lats', 'bíceps'],
+    exercises: [
+      { name: 'Jalón polea alta Marcy', detail: 'agarre ancho neutro', sets: '4 × 8–12', rir: '1', tempo: '2-0-1-1', rest: '2.5 min',
+        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/08/neutral-grip-lat-pulldown.gif',
+        why: 'Width. Neutro mecánicamente más fuerte que prono, permite más carga al stack de 70 kg.' },
+      { name: 'Remo sentado polea baja Marcy', detail: 'hacia abdomen bajo', sets: '4 × 8–10', rir: '1', tempo: '2-0-1-1', rest: '2.5 min',
+        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/05/seated-cable-row.gif',
+        why: 'Thickness + lower lats. Tirar hacia abdomen bajo, no pecho.' },
+      { name: 'Remo mancuerna 1 brazo', detail: 'unilateral en banco', sets: '3 × 8–10', rir: '1', tempo: '2-0-1-1', rest: '90 s',
+        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/06/single-arm-dumbbell-row.gif',
+        why: 'ROM unilateral mayor + corrige asimetrías. Carga hasta tu DB máx (24 kg).' },
+      { name: 'Pullover mancuerna', detail: 'banco transversal', sets: '3 × 10–12', rir: '0–1', tempo: '3-0-1-1', rest: '90 s',
+        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/05/dumbbell-pullover.gif',
+        why: 'Lat en stretch profundo bajo carga. Mejor ejercicio del Marcy setup para lat hipertrofia.' },
+      { name: 'Face pulls polea baja', detail: 'hacia la cara', sets: '4 × 12–15', rir: '0–1', tempo: '2-0-1-1', rest: '90 s',
+        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/04/face-pull.gif',
+        why: 'Rear delt + rotadores externos. Salud articular del hombro priorizada.' },
+      { name: 'Curl mancuerna inclinado', detail: 'banco 45° · long head', sets: '3 × 8–12', rir: '0–1', tempo: '3-0-1-1', rest: '90 s',
+        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/05/incline-dumbbell-curl.gif',
+        why: 'Bíceps cabeza larga en stretch → pico. Si 13.5 kg no sale 3x: usa 11.25 kg + microplates.' },
+      { name: 'Curl martillo mancuerna', detail: 'braquial + braquiorradial', sets: '3 × 10–12', rir: '0–1', tempo: '—', rest: '90 s',
+        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/05/hammer-curl.gif',
+        why: 'Braquial + braquiorradial = grosor del brazo entre bíceps y tríceps.' }
+    ]
+  },
+  jue: {
+    num: '04', title: 'Push', subtitle: 'hombro énfasis',
+    duration: '~75 min', location: 'Gym', sets: 20,
+    tags: ['gym', 'push 2', 'shoulder day', 'lat delt'],
+    exercises: [
+      { name: 'Press militar barra de pie', detail: 'OHP · pico de fuerza', sets: '4 × 6–8', rir: '1–2', tempo: '2-1-1-0', rest: '3 min',
+        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/04/standing-barbell-shoulder-press.gif',
+        why: 'Pico de fuerza delt anterior. Barbell > DB para sobrecarga progresiva limpia.' },
+      { name: 'Press inclinado máquina', detail: 'Hammer u otra', sets: '3 × 8–10', rir: '1', tempo: '—', rest: '2.5 min',
+        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2023/05/hammer-strength-incline-chest-press.gif',
+        why: '2º hit upper chest en vector distinto al lunes (machine plane vs DB).' },
+      { name: 'Elevación lateral cable', detail: 'polea baja contralateral', sets: '4 × 10–15', rir: '0–1', tempo: '2-0-1-1', rest: '90 s',
+        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/05/cable-lateral-raise.gif',
+        why: 'Tensión constante en el bottom range del lat delt (DB tiene zero tension ahí).' },
+      { name: 'Elevación lateral tumbado', detail: 'banco inclinado · de lado', sets: '3 × 12–15', rir: '0–1', tempo: '2-0-1-1', rest: '90 s',
+        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/05/lying-side-lateral-raise.gif',
+        why: 'Resistencia máxima en stretched position. Mejor ejercicio para lat delt long-length bias.' },
+      { name: 'Press francés barra Z', detail: 'banco declinado leve', sets: '3 × 8–10', rir: '1', tempo: '3-0-1-0', rest: '90 s',
+        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/04/ez-bar-skull-crusher.gif',
+        why: 'Cabeza larga del tríceps en estiramiento (declinado lo carga más).' },
+      { name: 'Pushdown polea cuerda', detail: 'cabeza lateral finisher', sets: '3 × 10–12', rir: '0–1', tempo: '2-0-1-1', rest: '90 s',
+        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/04/rope-tricep-pushdown.gif',
+        why: 'Cabeza lateral del tríceps, finisher.' }
+    ]
+  },
+  vie: {
+    num: '05', title: 'Arms+Delt', subtitle: 'brazos · delt · piernas accessory',
+    duration: '~70 min', location: 'Casa · Marcy', sets: 22,
+    tags: ['casa', 'brazos', 'pump', 'lat delt 3x'],
+    exercises: [
+      { name: 'Elevaciones laterales mancuerna', detail: '3er hit · prioridad #1', sets: '4 × 12–15', rir: '0–1', tempo: '2-0-1-1', rest: '75 s',
+        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/04/dumbbell-lateral-raise.gif',
+        why: '3º hit lat delt semanal — la prioridad estética nº1.' },
+      { name: 'Pájaros mancuerna', detail: 'boca abajo · banco 30°', sets: '4 × 12–15', rir: '0–1', tempo: '2-0-1-1', rest: '75 s',
+        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/04/dumbbell-rear-delt-fly.gif',
+        why: 'Rear delt aislado. Banco evita compensación con espalda.' },
+      { name: 'Curl predicador con mancuerna', detail: 'banco inclinado al revés', sets: '3 × 8–12', rir: '0–1', tempo: '2-0-1-1', rest: '90 s',
+        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/05/preacher-curl.gif',
+        why: 'Bíceps short head (pico). Banco como predicador improvisado.' },
+      { name: 'Extensión tríceps overhead', detail: 'mancuerna 2 manos', sets: '3 × 10–12', rir: '0–1', tempo: '3-0-1-1', rest: '90 s',
+        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/05/two-arm-overhead-dumbbell-extension.gif',
+        why: 'Long head 2x frecuencia. Stretch position priorizado.' },
+      { name: 'Pushdown cuerda', detail: 'polea alta Marcy · pump', sets: '3 × 12–15', rir: '0–1', tempo: '2-0-1-1', rest: '75 s',
+        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/04/rope-tricep-pushdown.gif',
+        why: 'Tríceps pump finisher.' },
+      { name: 'Leg curl Marcy', detail: 'rodillos · ham 2x', sets: '4 × 10–15', rir: '0–1', tempo: '3-0-1-1', rest: '90 s',
+        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/11/lying-leg-curl.gif',
+        why: 'Hamstring 2x frecuencia. Pausa en peak contraction.' },
+      { name: 'Leg extension Marcy', detail: 'quad 2x freq', sets: '4 × 12–15', rir: '0–1', tempo: '2-0-1-1', rest: '90 s',
+        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/09/leg-extension.gif',
+        why: 'Quad 2x freq sin axial. Recuperación intacta para próxima semana.' }
+    ]
+  }
+};
+
+const VOLUME = [
+  ['Pecho', 13, 8, '12–16', 22, 'MAV', 'accent'],
+  ['Deltoide lateral', '15–16', 8, '16–22', 26, 'MAV bajo · escalable', 'accent'],
+  ['Deltoide anterior', '7 directo', 6, '10–14', 18, 'MAV con indirecto', 'ok'],
+  ['Deltoide posterior', 8, 6, '12–16', 20, 'MEV–MAV', 'ok'],
+  ['Espalda (lats+thick)', 14, 10, '14–22', 25, 'MAV bajo · 1x freq', 'accent'],
+  ['Bíceps', 9, 8, '14–20', 24, 'MEV alto · escalable', 'info'],
+  ['Tríceps', 15, 6, '10–14', 18, 'MAV alto · push priority', 'accent'],
+  ['Cuádriceps', 14, 8, '12–18', 20, 'MAV', 'accent'],
+  ['Hamstrings', 8, 4, '10–14', 18, 'MEV–MAV', 'ok'],
+  ['Glúteos', '3 directo', 4, '8–12', 16, 'MEV con indirecto', 'ok'],
+  ['Gemelos', 6, 6, '12–16', 20, 'MEV · escalable', 'info']
+];
+
+const FREQ = [
+  ['Pecho', '2x', 'Lun + Jue'],
+  ['Deltoide lateral', '3x', 'Lun + Jue + Vie'],
+  ['Deltoide anterior', '2x', 'Lun + Jue'],
+  ['Deltoide posterior', '2x', 'Mié + Vie'],
+  ['Espalda', '1x densidad alta', 'Mié'],
+  ['Bíceps', '2x', 'Mié + Vie'],
+  ['Tríceps', '3x', 'Lun + Jue + Vie'],
+  ['Cuádriceps', '2x', 'Mar + Vie'],
+  ['Hamstrings', '2x', 'Mar + Vie'],
+  ['Glúteos', '1x directo', 'Mar'],
+  ['Gemelos', '1–2x', 'Mar (+ Vie opcional)']
+];
+
+const BLACKLIST = [
+  ['Peso muerto convencional pesado', 'Erectores hipertrofiados rompen línea V. Alto costo de recuperación.'],
+  ['Peso muerto sumo', 'Igual al convencional + activación oblicua y cintura.'],
+  ['Encogimientos >15 kg/lado', 'Trapecio superior hipertrofiado = cuello acortado, rompe V-taper.'],
+  ['Side bends · woodchoppers · russian twist con peso', 'Hipertrofia oblicua = cintura ancha. Antagónico al objetivo estético.'],
+  ['Dips pesados como ejercicio principal', 'Enfatiza pecho inferior/exterior. Aplana clavicular.'],
+  ['Press militar tras nuca', 'Riesgo cápsula posterior sin beneficio sobre press frente.'],
+  ['Sentadilla frontal pesada como reemplazo', 'Estrés axial sin ventaja hipertrófica clara para cuádriceps medial.'],
+  ['Buenos días', 'Erectores + bajo retorno hipertrófico.'],
+  ['Cardio steady-state >20 min o HIIT', 'Gasto calórico que tu superávit no cubre. Antagonista directo.'],
+  ['Bench plano como principal de pecho', 'Pecho medio-inferior. Rompe target upper Greek God. OK 1x/sem.'],
+  ['Curl con barra recta como base', 'OK como variación, pero NO sustituye curl inclinado para pico.'],
+  ['Hip thrust con cargas extremas (>BW×1.5)', 'Glúteo crece en grosor profundo. Para line estético mantén reps 8–15.'],
+  ['Búlgaras pesadas con alto volumen', 'Glúteo muy desarrollado en cadera lateral puede romper line de cintura.'],
+  ['Ayuno intermitente', 'Restringe ventana de ingesta en alguien que necesita comer mucho.']
+];
+
+// ============ RENDER DAYS ============
+function renderDay(key) {
+  const d = DAYS[key];
+  const exHtml = d.exercises.map((e, i) => `
+    <div class="ex-row" data-day="${key}" data-ex="${i}">
+      <div class="ex-num">${String(i + 1).padStart(2, '0')}</div>
+      <div class="ex-main">
+        <h3>${e.name}</h3>
+        <p>${e.detail}</p>
+      </div>
+      <div class="ex-stat primary"><div class="lbl">S×R</div><div class="val accent">${e.sets}</div></div>
+      <div class="ex-stat"><div class="lbl">RIR</div><div class="val">${e.rir}</div></div>
+      <div class="ex-stat"><div class="lbl">Tempo</div><div class="val">${e.tempo}</div></div>
+      <div class="ex-icon">›</div>
+    </div>
+  `).join('');
+
+  return `
+    <section class="panel ${key === 'lun' ? 'active' : ''}" data-panel="${key}">
+      <div class="day-header">
+        <div class="day-number">${d.num}</div>
+        <div class="day-title">
+          <h2>${d.title} <em>· ${d.subtitle}</em></h2>
+          <div class="day-meta">
+            ${d.tags.map((t, i) => `<span${i === 0 ? ' class="accent"' : ''}>${t}</span>`).join('')}
+          </div>
+        </div>
+        <div class="day-info">
+          ${d.location}<br>
+          <strong>${d.duration}</strong>
+          ${d.sets} sets totales
+        </div>
+      </div>
+      <div class="ex-list">${exHtml}</div>
+    </section>
+  `;
+}
+
+document.getElementById('days-container').innerHTML =
+  Object.keys(DAYS).map(renderDay).join('');
+
+// ============ RENDER VOLUME ============
+document.getElementById('vol-table').innerHTML = VOLUME.map(r => `
+  <tr>
+    <td class="first">${r[0]}</td>
+    <td>${r[1]}</td>
+    <td>${r[2]}</td>
+    <td>${r[3]}</td>
+    <td>${r[4]}</td>
+    <td><span class="badge ${r[6]}">${r[5]}</span></td>
+  </tr>
+`).join('');
+
+document.getElementById('freq-table').innerHTML = FREQ.map(r => `
+  <tr>
+    <td class="first">${r[0]}</td>
+    <td><span class="badge accent">${r[1]}</span></td>
+    <td>${r[2]}</td>
+  </tr>
+`).join('');
+
+// ============ RENDER BLACKLIST ============
+document.getElementById('black-grid').innerHTML = BLACKLIST.map(b => `
+  <div class="black-card">
+    <h4>${b[0]}</h4>
+    <p>${b[1]}</p>
+  </div>
+`).join('');
+
+// ============ TAB NAV + DEEP LINKING ============
+const tabs = document.querySelectorAll('.tab');
+const panels = document.querySelectorAll('.panel');
+
+function activateTab(target) {
+  tabs.forEach(t => t.classList.toggle('active', t.dataset.tab === target));
+  panels.forEach(p => p.classList.toggle('active', p.dataset.panel === target));
+  // Guardar último tab visitado
+  try { localStorage.setItem('lastTab', target); } catch(e) {}
+  // Actualizar URL hash sin saltar
+  if (history.replaceState) history.replaceState(null, '', '#' + target);
+}
+
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    activateTab(tab.dataset.tab);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+});
+
+// Restaurar último tab al cargar (o leer hash)
+window.addEventListener('DOMContentLoaded', () => {
+  let initialTab = null;
+  if (location.hash) initialTab = location.hash.replace('#', '');
+  if (!initialTab) {
+    try { initialTab = localStorage.getItem('lastTab'); } catch(e) {}
+  }
+  // Auto-seleccionar día actual si no hay nada guardado
+  if (!initialTab) {
+    const today = new Date().getDay(); // 0=dom, 1=lun, ..., 6=sab
+    const dayMap = { 1: 'lun', 2: 'mar', 3: 'mie', 4: 'jue', 5: 'vie' };
+    initialTab = dayMap[today] || 'lun';
+  }
+  const validTabs = Array.from(tabs).map(t => t.dataset.tab);
+  if (validTabs.includes(initialTab)) activateTab(initialTab);
+});
+
+// ============ MODAL ============
+const modal = document.getElementById('modal');
+const modalImg = document.getElementById('modal-img');
+const modalContent = document.getElementById('modal-content');
+const modalClose = document.getElementById('modal-close');
+
+document.addEventListener('click', (e) => {
+  const row = e.target.closest('.ex-row');
+  if (!row) return;
+  const day = row.dataset.day;
+  const idx = parseInt(row.dataset.ex);
+  const ex = DAYS[day].exercises[idx];
+
+  const ytQuery = encodeURIComponent(ex.name + ' technique');
+  modalImg.innerHTML = `<img src="${ex.gif}" alt="${ex.name}" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<div class=\\'placeholder\\'>// GIF no disponible<br><strong>${ex.name}</strong><br><a href=\\'https://www.youtube.com/results?search_query=${ytQuery}\\' target=\\'_blank\\'>Buscar en YouTube ↗</a></div>'">`;
+
+  modalContent.innerHTML = `
+    <h3>${ex.name}</h3>
+    <p style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--text-3); letter-spacing: 0.15em; text-transform: uppercase;">${ex.detail}</p>
+
+    <div class="modal-stats">
+      <div class="modal-stat"><div class="l">Series × Reps</div><div class="v" style="color:var(--accent)">${ex.sets}</div></div>
+      <div class="modal-stat"><div class="l">RIR</div><div class="v">${ex.rir}</div></div>
+      <div class="modal-stat"><div class="l">Tempo</div><div class="v">${ex.tempo}</div></div>
+      <div class="modal-stat"><div class="l">Descanso</div><div class="v">${ex.rest}</div></div>
+    </div>
+
+    <div class="modal-section">
+      <h4>// por qué este ejercicio</h4>
+      <p>${ex.why}</p>
+    </div>
+
+    <div class="modal-section">
+      <h4>// puntos clave</h4>
+      <p>RIR ${ex.rir} en serie efectiva · descanso ${ex.rest} obligatorio · si llegas al tope de reps en todas las series, sube carga la siguiente sesión (microplates si es aislamiento).</p>
+    </div>
+  `;
+
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+});
+
+modalClose.addEventListener('click', closeModal);
+modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+function closeModal() {
+  modal.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+// ============ PWA INSTALL HANDLING ============
+const installBanner = document.getElementById('install-banner');
+const installBtn = document.getElementById('install-btn');
+const installClose = document.getElementById('install-close');
+const installInstruction = document.getElementById('install-instruction');
+
+let deferredPrompt = null;
+const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+const isAndroid = /Android/.test(navigator.userAgent);
+
+// Detectar prompt instalable (Chrome / Edge)
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  if (!isStandalone && !localStorage.getItem('installDismissed')) {
+    installBtn.style.display = 'block';
+    installInstruction.textContent = 'Toca instalar para añadir como app';
+    installBanner.classList.add('show');
+  }
+});
+
+installBtn.addEventListener('click', async () => {
+  if (!deferredPrompt) return;
+  deferredPrompt.prompt();
+  const { outcome } = await deferredPrompt.userChoice;
+  if (outcome === 'accepted') {
+    installBanner.classList.remove('show');
+  }
+  deferredPrompt = null;
+});
+
+installClose.addEventListener('click', () => {
+  installBanner.classList.remove('show');
+  try { localStorage.setItem('installDismissed', '1'); } catch(e) {}
+});
+
+// iOS: mostrar instrucción manual (no hay beforeinstallprompt en Safari)
+if (isIOS && !isStandalone) {
+  setTimeout(() => {
+    if (!localStorage.getItem('installDismissed')) {
+      installInstruction.textContent = 'Toca ⬆ → "A pantalla de inicio"';
+      installBanner.classList.add('show');
+    }
+  }, 2500);
+}
+
+// ============ SERVICE WORKER (offline) ============
+// Solo funciona si está servido por HTTPS o localhost
+if ('serviceWorker' in navigator && location.protocol !== 'file:') {
+  const swCode = `
+    const CACHE = 'greek-god-v1';
+    const ASSETS = ['./'];
+    self.addEventListener('install', e => {
+      e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)).then(() => self.skipWaiting()));
+    });
+    self.addEventListener('activate', e => {
+      e.waitUntil(clients.claim());
+    });
+    self.addEventListener('fetch', e => {
+      if (e.request.method !== 'GET') return;
+      e.respondWith(
+        caches.match(e.request).then(r => r || fetch(e.request).then(resp => {
+          if (resp.ok && (e.request.url.startsWith(location.origin) || e.request.url.includes('fonts.g') || e.request.url.includes('inspireusa'))) {
+            const copy = resp.clone();
+            caches.open(CACHE).then(c => c.put(e.request, copy));
+          }
+          return resp;
+        }).catch(() => caches.match('./')))
+      );
+    });
+  `;
+  const blob = new Blob([swCode], { type: 'application/javascript' });
+  const swUrl = URL.createObjectURL(blob);
+  navigator.serviceWorker.register(swUrl).catch(() => {});
+}
+</script>
+
+</body>
+</html>
