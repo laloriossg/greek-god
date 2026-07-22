@@ -243,9 +243,106 @@
   }
 
   /* ============ NAV ============ */
-  nav.tabs {
+  /* ============ NAVEGACIÓN NIVEL 1: SECCIONES ============ */
+  nav.sections {
     position: sticky;
     top: 0;
+    z-index: 60;
+    background: rgba(10, 10, 10, 0.97);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-2);
+    padding-left: var(--sal);
+    padding-right: var(--sar);
+  }
+  .sections-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .sections-inner::-webkit-scrollbar { display: none; }
+  .section-btn {
+    flex: 1 0 auto;
+    min-height: 52px;
+    padding: 0.9rem 1.4rem;
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--text-3);
+    background: none;
+    border: none;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    justify-content: center;
+  }
+  .section-btn .sec-ico {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    opacity: 0.6;
+  }
+  .section-btn:hover { color: var(--text); }
+  .section-btn.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  /* Subtítulo de sección con selector DEFAULT/GENESIS */
+  .routine-switch {
+    display: flex;
+    gap: 0.5rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 1rem 1.25rem 0;
+    flex-wrap: wrap;
+  }
+  .rswitch-btn {
+    flex: 1;
+    min-width: 140px;
+    min-height: 56px;
+    padding: 0.75rem 1rem;
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    text-align: left;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .rswitch-btn .rs-name {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--text);
+    display: block;
+  }
+  .rswitch-btn .rs-desc {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin-top: 0.2rem;
+    display: block;
+  }
+  .rswitch-btn.active {
+    border-color: var(--accent);
+    background: var(--bg-3);
+  }
+  .rswitch-btn.active .rs-name { color: var(--accent); }
+
+  /* Ocultar grupos de tabs por sección */
+  .tab-group { display: none; }
+  .tab-group.active { display: flex; }
+
+  nav.tabs {
+    position: sticky;
+    top: 52px;
     z-index: 50;
     background: rgba(10, 10, 10, 0.94);
     backdrop-filter: blur(20px);
@@ -258,11 +355,13 @@
   .tabs-inner {
     max-width: 1400px;
     margin: 0 auto;
-    display: flex;
+  }
+  .tab-group {
     overflow-x: auto;
     scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
   }
+  .tab-group::-webkit-scrollbar { display: none; }
   .tabs-inner::-webkit-scrollbar { display: none; }
 
   .tab {
@@ -1227,6 +1326,15 @@
     .prog-grid { grid-template-columns: repeat(2, 1fr); }
     main { padding: 1.5rem 1rem 3rem; }
     .section-title h2 { font-size: 1.6rem; }
+    /* Navegación de secciones en móvil */
+    .section-btn { font-size: 0.82rem; padding: 0.85rem 1rem; min-height: 48px; }
+    .section-btn .sec-ico { display: none; }
+    nav.tabs { top: 48px; }
+    .routine-switch { padding: 0.85rem 1rem 0; }
+    .rswitch-btn { min-width: 0; }
+    .diet-summary { grid-template-columns: repeat(2, 1fr); }
+    .meal-card { grid-template-columns: auto 1fr; }
+    .sc-days button { flex: 1; }
   }
 
   /* Standalone mode (instalado como PWA) */
@@ -1234,6 +1342,316 @@
     .install-banner { display: none !important; }
     .install-section { display: none; }
   }
+
+  /* ============ COMPONENTES DE DIETA ============ */
+  .diet-summary {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+  .ds-macro {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    padding: 1rem 0.75rem;
+    text-align: center;
+  }
+  .ds-macro.accent { border-color: var(--accent); }
+  .dsm-v {
+    display: block;
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 1.4rem;
+    color: var(--text);
+  }
+  .ds-macro.accent .dsm-v { color: var(--accent); }
+  .dsm-l {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin-top: 0.3rem;
+  }
+  .diet-note {
+    font-size: 0.9rem;
+    color: var(--text-2);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    max-width: 70ch;
+  }
+
+  /* Comidas */
+  .meals { display: flex; flex-direction: column; gap: 0.75rem; }
+  .meal-card {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    padding: 1.1rem 1.25rem;
+    cursor: pointer;
+    transition: border-color 0.2s, opacity 0.2s;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+    align-items: start;
+  }
+  .meal-card:hover { border-color: var(--border-2); }
+  .meal-card.eaten { opacity: 0.5; border-color: var(--green); }
+  .meal-check {
+    width: 40px;
+    height: 40px;
+    border: 1.5px solid var(--border-2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem;
+    color: var(--text-3);
+    flex-shrink: 0;
+  }
+  .meal-card.eaten .meal-check {
+    background: var(--green);
+    border-color: var(--green);
+    color: var(--bg);
+  }
+  .meal-body { min-width: 0; }
+  .meal-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.75rem;
+    align-items: baseline;
+    flex-wrap: wrap;
+    margin-bottom: 0.5rem;
+  }
+  .meal-name {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--text);
+  }
+  .meal-name .tag-slot {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 0.1rem 0.4rem;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+  }
+  .meal-time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--gold);
+    white-space: nowrap;
+  }
+  .meal-recipe { font-size: 0.9rem; color: var(--text-2); line-height: 1.55; }
+  .meal-macros {
+    display: flex;
+    gap: 0.9rem;
+    margin-top: 0.6rem;
+    flex-wrap: wrap;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.06em;
+    color: var(--text-3);
+  }
+  .meal-macros b { color: var(--text-2); font-weight: 500; }
+
+  /* Lista del súper */
+  .super-controls { margin-bottom: 1.5rem; }
+  .sc-label {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin-bottom: 0.6rem;
+  }
+  .sc-days { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .sc-days button {
+    min-width: 52px;
+    min-height: 48px;
+    padding: 0.5rem 1rem;
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    color: var(--text-2);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .sc-days button.active {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--bg-3);
+  }
+  .super-list { display: flex; flex-direction: column; }
+  .super-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid var(--border);
+    align-items: baseline;
+  }
+  .super-name { font-size: 0.95rem; color: var(--text); }
+  .super-name .sn-note {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.58rem;
+    color: var(--text-3);
+    margin-top: 0.15rem;
+    letter-spacing: 0.05em;
+  }
+  .super-qty {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.95rem;
+    color: var(--accent);
+    white-space: nowrap;
+    font-weight: 500;
+  }
+  .super-foot { margin-top: 1.5rem; }
+  .super-foot p {
+    font-size: 0.8rem;
+    color: var(--text-3);
+    line-height: 1.55;
+    max-width: 70ch;
+  }
+
+  /* Suplementos */
+  .supp-hero {
+    background: var(--bg-3);
+    border: 1px solid var(--accent);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .supp-hero-v {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 2.5rem;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .supp-hero-l {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-2);
+    margin: 0.5rem 0 0.75rem;
+  }
+  .supp-hero p { font-size: 0.9rem; color: var(--text-2); line-height: 1.6; max-width: 65ch; }
+  .supp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 0.75rem;
+  }
+  .supp-card {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    padding: 1.1rem 1.25rem;
+  }
+  .supp-card h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.35rem;
+  }
+  .supp-dose {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--gold);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.6rem;
+  }
+  .supp-card ul { list-style: none; padding: 0; margin: 0; }
+  .supp-card li {
+    font-size: 0.85rem;
+    color: var(--text-2);
+    line-height: 1.5;
+    padding-left: 1rem;
+    position: relative;
+    margin-bottom: 0.25rem;
+  }
+  .supp-card li::before { content: '+'; position: absolute; left: 0; color: var(--accent); }
+
+  /* Sustituciones */
+  .sust-block { margin-bottom: 2rem; }
+  .sust-block h3 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin-bottom: 1rem;
+  }
+  .sust-list { display: flex; flex-direction: column; }
+  .sust-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.95rem;
+  }
+  .sust-a { color: var(--text); flex-shrink: 0; }
+  .sust-eq { color: var(--accent); font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; }
+  .sust-b { color: var(--text-2); }
+  .sust-p { font-size: 0.9rem; color: var(--text-2); line-height: 1.6; }
+
+  /* Reglas */
+  .rules-list { display: flex; flex-direction: column; gap: 0.6rem; }
+  .rule-row {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    align-items: start;
+  }
+  .rule-num {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .rule-text { font-size: 0.95rem; color: var(--text-2); line-height: 1.55; }
+
+  /* Alimentos libres */
+  .free-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 0.75rem;
+  }
+  .free-card {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    padding: 1.1rem 1.25rem;
+  }
+  .free-card h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 1.05rem;
+    margin-bottom: 0.6rem;
+    color: var(--accent);
+  }
+  .free-card p { font-size: 0.88rem; color: var(--text-2); line-height: 1.55; }
+  .free-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .free-tags span {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--text-2);
+    background: var(--bg-3);
+    padding: 0.25rem 0.6rem;
+    border: 1px solid var(--border);
+  }
+
 </style>
 </head>
 <body>
@@ -1253,7 +1671,7 @@
 <header class="hero">
   <div class="hero-grid">
     <div>
-      <div class="brand">Greek God Protocol · v1.1</div>
+      <div class="brand">Greek God Protocol · v2.0</div>
       <h1 class="title">Construir<br><em>el físico.</em></h1>
       <p class="subtitle">// Lean bulk · 2–3 años · prioridad estética: deltoides 3D, V-taper, cintura estrecha</p>
     </div>
@@ -1279,21 +1697,69 @@
 </header>
 
 <!-- ============ NAV ============ -->
+<!-- NIVEL 1: SECCIONES -->
+<nav class="sections">
+  <div class="sections-inner">
+    <button class="section-btn active" data-section="rutinas"><span class="sec-ico">01</span>Rutinas</button>
+    <button class="section-btn" data-section="dietas"><span class="sec-ico">02</span>Dietas</button>
+    <button class="section-btn" data-section="guia"><span class="sec-ico">03</span>Guía</button>
+    <button class="section-btn" data-section="metricas"><span class="sec-ico">04</span>Métricas</button>
+  </div>
+</nav>
+
+<!-- Selector de rutina DEFAULT / GENESIS (solo visible en Rutinas) -->
+<div class="routine-switch" id="routine-switch">
+  <button class="rswitch-btn active" data-routine="default">
+    <span class="rs-name">DEFAULT</span>
+    <span class="rs-desc">Greek God · 5 días · lean bulk</span>
+  </button>
+  <button class="rswitch-btn" data-routine="genesis">
+    <span class="rs-name">GENESIS</span>
+    <span class="rs-desc">Programa original · 3 días</span>
+  </button>
+</div>
+
+<!-- NIVEL 2: TABS POR SECCIÓN -->
 <nav class="tabs">
   <div class="tabs-inner">
-    <button class="tab active" data-tab="lun">Lun · Push 1</button>
-    <button class="tab" data-tab="mar">Mar · Lower</button>
-    <button class="tab" data-tab="mie">Mié · Pull</button>
-    <button class="tab" data-tab="jue">Jue · Push 2</button>
-    <button class="tab" data-tab="vie">Vie · Arms+Delt</button>
-    <button class="tab" data-tab="abs">Abs · Express</button>
-    <button class="tab" data-tab="vol">Volumen</button>
-    <button class="tab" data-tab="prog">Progresión</button>
-    <button class="tab" data-tab="nutr">Nutrición</button>
-    <button class="tab" data-tab="metr">Métricas</button>
-    <button class="tab" data-tab="black">Lista Negra</button>
-    <button class="tab" data-tab="guia">Cómo leer</button>
-    <button class="tab" data-tab="install">Instalar</button>
+    <!-- Rutinas · DEFAULT -->
+    <div class="tab-group active" data-group="rutinas-default">
+      <button class="tab active" data-tab="lun">Lun · Push 1</button>
+      <button class="tab" data-tab="mar">Mar · Lower</button>
+      <button class="tab" data-tab="mie">Mié · Pull</button>
+      <button class="tab" data-tab="jue">Jue · Push 2</button>
+      <button class="tab" data-tab="vie">Vie · Arms+Delt</button>
+      <button class="tab" data-tab="abs">Abs · Express</button>
+      <button class="tab" data-tab="vol">Volumen</button>
+      <button class="tab" data-tab="prog">Progresión</button>
+    </div>
+    <!-- Rutinas · GENESIS -->
+    <div class="tab-group" data-group="rutinas-genesis">
+      <button class="tab" data-tab="g-lun">Lun · Pecho+Espalda</button>
+      <button class="tab" data-tab="g-mie">Mié · Hombro+Brazo</button>
+      <button class="tab" data-tab="g-vie">Vie · Pierna</button>
+      <button class="tab" data-tab="g-abs">Abs · Nivel 1</button>
+      <button class="tab" data-tab="g-info">Sobre GENESIS</button>
+    </div>
+    <!-- Dietas -->
+    <div class="tab-group" data-group="dietas">
+      <button class="tab" data-tab="d-comidas">Comidas del día</button>
+      <button class="tab" data-tab="d-super">Lista del súper</button>
+      <button class="tab" data-tab="d-sup">Suplementos</button>
+      <button class="tab" data-tab="d-sust">Sustituciones</button>
+      <button class="tab" data-tab="d-reglas">Reglas + permitidos</button>
+    </div>
+    <!-- Guía -->
+    <div class="tab-group" data-group="guia">
+      <button class="tab" data-tab="nutr">Nutrición base</button>
+      <button class="tab" data-tab="black">Lista Negra</button>
+      <button class="tab" data-tab="guia">Cómo leer</button>
+      <button class="tab" data-tab="install">Instalar</button>
+    </div>
+    <!-- Métricas -->
+    <div class="tab-group" data-group="metricas">
+      <button class="tab" data-tab="metr">Progreso</button>
+    </div>
   </div>
 </nav>
 
@@ -1306,7 +1772,7 @@
 <section class="panel" data-panel="vol">
   <div class="section-title">
     <h2>Volumen <em>semanal</em></h2>
-    <span class="tag">Sets efectivos · RIR 0–2</span>
+    <span class="tag">Rutina DEFAULT · sets efectivos</span>
   </div>
   <p style="color: var(--text-2); margin-bottom: 1.5rem; max-width: 700px; font-size: 0.9rem;">
     Empiezo en MAV bajo, no MRV. A 61 kg el límite es <em style="color:var(--accent); font-style:normal;">recovery + calorías</em>, no capacidad de tolerar series. Crezco más con 14 sets recuperadas que con 22 a medias.
@@ -1707,6 +2173,129 @@
   </div>
 </section>
 
+<!-- ============ DIETA · COMIDAS DEL DÍA ============ -->
+<section class="panel" data-panel="d-comidas">
+  <div class="section-title">
+    <h2>Comidas del <em>día</em></h2>
+    <span class="tag">60–65 kg · semiactivo · 2729 kcal</span>
+  </div>
+
+  <div class="diet-summary">
+    <div class="ds-macro"><span class="dsm-v">211 g</span><span class="dsm-l">Proteína</span></div>
+    <div class="ds-macro"><span class="dsm-v">330 g</span><span class="dsm-l">Carbos</span></div>
+    <div class="ds-macro"><span class="dsm-v">65 g</span><span class="dsm-l">Grasas</span></div>
+    <div class="ds-macro accent"><span class="dsm-v">2729</span><span class="dsm-l">kcal/día</span></div>
+  </div>
+
+  <p class="diet-note">Horarios reacomodados: entreno en la mañana, así que <strong>pre y post-entreno abren el día</strong> y la comida de huevos cierra en la noche. Los horarios son sugerencia — muévelos a tu rutina. Toca cada comida para marcarla. Se reinicia cada día.</p>
+
+  <div class="meals" id="meals-list"></div>
+</section>
+
+<!-- ============ DIETA · LISTA DEL SÚPER ============ -->
+<section class="panel" data-panel="d-super">
+  <div class="section-title">
+    <h2>Lista del <em>súper</em></h2>
+    <span class="tag">Calculadora por días</span>
+  </div>
+
+  <p class="diet-note">Elige cuántos días quieres surtir y la app calcula el total en crudo que necesitas comprar. Basado en tus 6 comidas diarias (pesos ya convertidos de cocido a crudo donde aplica).</p>
+
+  <div class="super-controls">
+    <span class="sc-label">Días a surtir</span>
+    <div class="sc-days" id="sc-days">
+      <button data-days="1">1</button>
+      <button data-days="3">3</button>
+      <button data-days="7" class="active">7</button>
+      <button data-days="14">14</button>
+      <button data-days="30">30</button>
+    </div>
+  </div>
+
+  <div class="super-list" id="super-list"></div>
+
+  <div class="super-foot">
+    <p>Las verduras, salsas y sazonadores son libres — no se calculan. El arroz se pesa cocido en tu dieta; aquí lo convierto a crudo (÷2.7) para la compra. La carne/pollo/pescado se pesan cocidos (≈ crudo ×0.75), así que compro un poco más.</p>
+  </div>
+</section>
+
+<!-- ============ DIETA · SUPLEMENTOS ============ -->
+<section class="panel" data-panel="d-sup">
+  <div class="section-title">
+    <h2>Suplementos <em>· tus dosis</em></h2>
+    <span class="tag">Calculado para 61 kg</span>
+  </div>
+
+  <div class="supp-hero">
+    <div class="supp-hero-v">6.1 g</div>
+    <div class="supp-hero-l">Creatina monohidratada al día · 0.1 × tu peso (61 kg)</div>
+    <p>Todos los días, incluso en descanso. Bebe mucha agua: la creatina jala agua a las células musculares. Es una ayuda real pero pequeña — no es un esteroide.</p>
+  </div>
+
+  <div class="supp-grid" id="supp-grid"></div>
+
+  <div class="diet-note" style="margin-top:1.5rem;">Los suplementos NO son necesarios para ganar músculo — son un empujón pequeño pero notable en rendimiento y recuperación. La proteína en polvo cuenta como una fuente más de proteína: úsala para completar tus gramos cuando ya no puedas comer más o no tengas tiempo de cocinar.</p>
+</section>
+
+<!-- ============ DIETA · SUSTITUCIONES ============ -->
+<section class="panel" data-panel="d-sust">
+  <div class="section-title">
+    <h2>Sustituciones de <em>alimentos</em></h2>
+    <span class="tag">Equivalencias</span>
+  </div>
+
+  <p class="diet-note">Puedes cambiar un carbohidrato por otro y una proteína por otra sin romper la dieta. Estas son las equivalencias base del programa.</p>
+
+  <div class="sust-block">
+    <h3>// carbohidratos equivalentes</h3>
+    <div class="sust-list" id="sust-carbs"></div>
+  </div>
+
+  <div class="sust-block">
+    <h3>// proteínas equivalentes</h3>
+    <p class="sust-p">Pollo ⇄ pescado (cualquier tipo) ⇄ tilapia ⇄ carne molida 97/3 ⇄ atún ⇄ medallón ⇄ salmón. Mismo gramaje en cocido.</p>
+  </div>
+</section>
+
+<!-- ============ DIETA · REGLAS + PERMITIDOS ============ -->
+<section class="panel" data-panel="d-reglas">
+  <div class="section-title">
+    <h2>Reglas + <em>permitidos</em></h2>
+    <span class="tag">8 reglas del programa</span>
+  </div>
+
+  <div class="rules-list" id="rules-list"></div>
+
+  <div class="section-title" style="margin-top:2.5rem;">
+    <h2>Alimentos <em>libres</em></h2>
+    <span class="tag">Sin pesar · sin límite</span>
+  </div>
+
+  <div class="free-grid" id="free-grid"></div>
+
+  <div class="free-card" style="margin-top:1.5rem;">
+    <h3>Comidas libres</h3>
+    <p>2 comidas libres a la semana cuando gustes (de preferencia saladas) + 2 postres de tu preferencia. La comida libre la puedes sustituir con los alimentos del plan.</p>
+  </div>
+</section>
+
+<!-- ============ GENESIS · INFO ============ -->
+<section class="panel" data-panel="g-info">
+  <div class="section-title">
+    <h2>Sobre <em>GENESIS</em></h2>
+    <span class="tag">Programa original</span>
+  </div>
+  <p class="diet-note">GENESIS es el programa base de 3 días del que partiste: un split clásico de volumen alto (Lunes pecho+espalda, Miércoles hombro+brazo, Viernes pierna completa) con pirámides ascendentes y series de doble rango. Es una excelente rutina de fuerza-hipertrofia general.</p>
+  <p class="diet-note">Tu rutina <strong>DEFAULT</strong> (Greek God) es la versión que optimizamos juntos para tu objetivo estético específico: prioriza deltoides y pecho clavicular, respeta tu lista negra y tu superávit ajustado, y reparte el volumen en 5 días para menos fatiga por sesión. Úsala como tu programa principal; GENESIS queda aquí como referencia y alternativa.</p>
+  <div class="info-grid">
+    <div class="info-card"><div class="ico">01</div><h3>Método de series</h3><p>Pirámide ascendente (15→12→10→8 subiendo peso) y doble rango: pesadas + drop del 40% para reps altas.</p></div>
+    <div class="info-card"><div class="ico">02</div><h3>Volumen</h3><p>Alto: 8–10 ejercicios por sesión, 3–4 series. Más caro metabólicamente que tu DEFAULT.</p></div>
+    <div class="info-card"><div class="ico">03</div><h3>Cuándo usarla</h3><p>Si un día prefieres entrenar por grupos grandes o rotar estímulo. Los videos y el registro de carga funcionan igual.</p></div>
+  </div>
+</section>
+
+
+
 </main>
 
 <!-- ============ MODAL ============ -->
@@ -1869,6 +2458,129 @@ const DAYS = {
         yt: 'PK4n7qJpOhM', gif: '',
         why: 'Anti-extensión: recto + transverso isométricos bajo estiramiento — cintura más plana por control del core, no más ancha. Rango parcial hasta dominar el completo; glúteo apretado para proteger lumbar. Sin rueda: plancha RKC (plancha normal apretando todo al máximo) 3×30s.' }
     ]
+  },
+
+  // ============ RUTINA GENESIS (programa original · 3 días) ============
+  'g-lun': {
+    num: 'G1', title: 'Pecho + Espalda', subtitle: 'GENESIS · lunes',
+    duration: '~70 min', location: 'Gym', sets: 32, routine: 'genesis',
+    tags: ['genesis', 'pecho', 'espalda', '8 ejercicios'],
+    exercises: [
+      { name: 'Press inclinado en Smith', detail: 'o barra libre / mancuernas', sets: '4 × 15,12,10,8', rir: '1–2', tempo: '—', rest: '2 min',
+        yt: 'yFQshytandQ', gif: '',
+        why: 'Pirámide ascendente: en cada serie subes peso y bajas reps (15→12→10→8). Upper chest primero mientras estás fresco.' },
+      { name: 'Press plano con barra', detail: 'o barra libre / mancuernas', sets: '4 × 15,12,10,8', rir: '1–2', tempo: '—', rest: '2 min',
+        yt: '', gif: '',
+        why: 'Pecho medio, misma pirámide. Base de fuerza de empuje horizontal.' },
+      { name: 'Cross-overs', detail: 'polea · doble rango', sets: '4 × 10 y 15', rir: '0–1', tempo: '2-0-1-1', rest: '90 s',
+        yt: '', gif: '',
+        why: 'Pesadas 10 reps, luego bajas 40% del peso y sacas 12–15. Estiramiento y contracción del pecho.' },
+      { name: 'Flys en pec-deck', detail: 'contracción 2s', sets: '4 × 10–12', rir: '0–1', tempo: '2-0-1-2', rest: '90 s',
+        yt: '', gif: '',
+        why: 'Aislamiento de pecho apretando 2 segundos en contracción cada rep.' },
+      { name: 'Jalón al pecho', detail: 'lat pulldown', sets: '4 × 15,12,10,8', rir: '1–2', tempo: '—', rest: '2 min',
+        yt: 'CAwf7n6Luuc', gif: '',
+        why: 'Anchura de espalda (dorsal), pirámide ascendente. Inicia el bloque de espalda.' },
+      { name: 'Remo con barra o Smith', detail: 'grosor de espalda', sets: '4 × 15,12,10,8', rir: '1–2', tempo: '—', rest: '2 min',
+        yt: '', gif: '',
+        why: 'Grosor de espalda media. Pirámide. Torso firme, tira hacia el ombligo.' },
+      { name: 'Jalón con agarre supino', detail: 'doble rango', sets: '4 × 10 y 15', rir: '0–1', tempo: '—', rest: '90 s',
+        yt: 'GZbfZ033f74', gif: '',
+        why: 'Sacas 10 reps, bajas peso y haces 15 más. Agarre supino mete más bíceps y dorsal bajo.' },
+      { name: 'Remo en máquina de polea', detail: 'contracción sostenida', sets: '4 × 15', rir: '0–1', tempo: '2-0-1-2', rest: '90 s',
+        yt: 'GZbfZ033f74', gif: '',
+        why: 'Apretando 2s en contracción; en la última rep sostén 10s. Finisher de espalda.' }
+    ]
+  },
+  'g-mie': {
+    num: 'G2', title: 'Hombro + Bíceps + Tríceps', subtitle: 'GENESIS · miércoles',
+    duration: '~75 min', location: 'Gym', sets: 40, routine: 'genesis',
+    tags: ['genesis', 'hombro', 'brazo', '10 ejercicios'],
+    exercises: [
+      { name: 'Press de hombro en máquina o Smith', detail: 'delt anterior', sets: '4 × 12,10,8,6', rir: '1–2', tempo: '—', rest: '2 min',
+        yt: '2yjwXTZQDDI', gif: '',
+        why: 'Pirámide: 12→10→8→6 subiendo peso. Compound de hombro para empezar fresco.' },
+      { name: 'Laterales con mancuerna', detail: 'doble rango', sets: '4 × 10 y 15', rir: '0–1', tempo: '2-0-1-1', rest: '75 s',
+        yt: '3VcKaXpzqRo', gif: '',
+        why: 'Pesadas 10 reps, bajas 40% y sacas 12–15. Deltoide lateral = anchura de hombros.' },
+      { name: 'Frontal con barra en cable', detail: 'delt anterior', sets: '4 × 10–12', rir: '0–1', tempo: '2-0-1-2', rest: '75 s',
+        yt: '', gif: '',
+        why: 'Apretando 2s en contracción por rep. Cable = tensión constante en delt frontal.' },
+      { name: 'Flys posteriores en pec-deck', detail: 'rear delt', sets: '4 × 12–15', rir: '0–1', tempo: '2-0-1-2', rest: '75 s',
+        yt: '', gif: '',
+        why: 'Deltoide posterior apretando 2s. Clave para hombro 3D y postura.' },
+      { name: 'Press francés', detail: 'tríceps · pesadas', sets: '4 × 6–8', rir: '1–2', tempo: '—', rest: '2 min',
+        yt: '', gif: '',
+        why: 'Cabeza larga del tríceps en estiramiento. Pesado por reps bajas.' },
+      { name: 'Extensión con barra en cable', detail: 'doble rango', sets: '4 × 6 y 15', rir: '0–1', tempo: '—', rest: '90 s',
+        yt: '', gif: '',
+        why: 'Pesadas 6 reps, bajas 40% y sacas 12–15. Pushdown con barra.' },
+      { name: 'Copa con soga en cable', detail: 'overhead cuerda', sets: '4 × 8–10', rir: '0–1', tempo: '2-0-1-2', rest: '75 s',
+        yt: '', gif: '',
+        why: 'Apretando 2s cada rep. Overhead = cabeza larga en máximo estiramiento.' },
+      { name: 'Curls con mancuerna sentado', detail: 'drop-set', sets: '4 × 6 y 15', rir: '0–1', tempo: '—', rest: '90 s',
+        yt: '', gif: '',
+        why: 'Sacas 8 reps pesadas, bajas peso y haces 15 más (drop-set). Bíceps.' },
+      { name: 'Predicador', detail: 'contracción sostenida', sets: '4 × 10–12', rir: '0–1', tempo: '3-0-1-2', rest: '75 s',
+        yt: '', gif: '',
+        why: 'Sostén 10s en contracción en la última rep. Pico del bíceps aislado.' },
+      { name: 'Curl inclinado con mancuernas', detail: 'concentradas apretando arriba', sets: '4 × 10–12', rir: '0–1', tempo: '3-0-1-2', rest: '75 s',
+        yt: 'DCe8f6vMe9A', gif: '',
+        why: 'Bien hechas apretando arriba. Inclinado = estiramiento de cabeza larga del bíceps.' }
+    ]
+  },
+  'g-vie': {
+    num: 'G3', title: 'Pierna Completa', subtitle: 'GENESIS · viernes',
+    duration: '~65 min', location: 'Gym', sets: 27, routine: 'genesis',
+    tags: ['genesis', 'pierna', 'glúteo', '9 ejercicios'],
+    exercises: [
+      { name: 'Extensión de cuádriceps', detail: 'pre-fatiga · sostén 10s', sets: '3 × 10–15', rir: '0–1', tempo: '2-0-1-2', rest: '90 s',
+        yt: '', gif: '',
+        why: 'Apretando y sosteniendo arriba 10s en la última rep. Pre-fatiga de cuádriceps.' },
+      { name: 'Sentadilla en Smith', detail: 'o hack / barra libre', sets: '3 × 12,10,8', rir: '1–2', tempo: '—', rest: '3 min',
+        yt: 'CCpr-xZWTng', gif: '',
+        why: 'Pirámide 12→10→8 subiendo peso. Base de fuerza de pierna.' },
+      { name: 'Prensa', detail: 'leg press', sets: '3 × 12,10,8', rir: '1–2', tempo: '—', rest: '2.5 min',
+        yt: '', gif: '',
+        why: 'Pirámide. Cuádriceps y glúteo con carga alta sin estabilización.' },
+      { name: 'Peso muerto con barra', detail: 'cadena posterior', sets: '3 × 12,10,8', rir: '2', tempo: '—', rest: '3 min',
+        yt: '', gif: '',
+        why: 'Pirámide. Femoral y glúteo. Espalda neutra, empuja el piso.' },
+      { name: 'Femoral sentado', detail: 'sostén 10s', sets: '3 × 8–10', rir: '0–1', tempo: '2-0-1-2', rest: '90 s',
+        yt: '14OrOWlM5QU', gif: '',
+        why: 'Apretando 2s cada rep, sostén 10s en la última. Isquios en flexión.' },
+      { name: 'Femoral acostado', detail: 'sostén 15s', sets: '3 × 10–12', rir: '0–1', tempo: '2-0-1-2', rest: '90 s',
+        yt: '', gif: '',
+        why: 'Apretando 2s, sostén 15s arriba en la última rep. Isquios completos.' },
+      { name: 'Hip-thrust', detail: 'glúteo · sostén 10s', sets: '3 × 10–12', rir: '0–1', tempo: '2-0-1-2', rest: '90 s',
+        yt: '', gif: '',
+        why: 'Apretando 2s cada rep, sostén 10s en la última. Máxima activación de glúteo.' },
+      { name: 'Abductores', detail: 'glúteo medio · sostén 10s', sets: '3 × 10–12', rir: '0–1', tempo: '2-0-1-2', rest: '75 s',
+        yt: '', gif: '',
+        why: 'Apretando 2s y sosteniendo cerrado 10s en la última rep. Glúteo medio = cadera redonda.' },
+      { name: 'Pantorrilla en costurera', detail: 'gemelo · sostén 2s', sets: '3 × 15–20', rir: '0–1', tempo: '2-2-1-2', rest: '60 s',
+        yt: '', gif: '',
+        why: 'Sostén 2s en contracción cada rep. Rango completo, estiramiento abajo.' }
+    ]
+  },
+  'g-abs': {
+    num: 'GA', title: 'Abs', subtitle: 'GENESIS · nivel 1',
+    duration: '~10 min', location: 'Casa o Gym', sets: 16, routine: 'genesis',
+    tags: ['genesis', 'core', 'nivel 1', '4 ejercicios'],
+    exercises: [
+      { name: 'Sit-ups', detail: 'abdomen completo', sets: '4 × 10', rir: '1', tempo: '2-0-1-1', rest: '45 s',
+        yt: 'jDwoBqPH0jk', gif: '',
+        why: 'Flexión completa del tronco: sube hasta quedar perpendicular al piso y baja con control. Manos cruzadas al pecho, exhala al subir. Si te molesta la lumbar, reduce el rango o cambia a crunch.' },
+      { name: 'Cruches / cortitas', detail: 'crunch de rango corto', sets: '4 × 10', rir: '1', tempo: '2-1-1-1', rest: '45 s',
+        yt: 'Xyd_fa5zoEU', gif: '',
+        why: 'Crunch de rango corto: solo despegas los omóplatos del suelo, la lumbar se queda pegada. Aprieta el abdomen arriba 1s. Aísla el recto abdominal sin meter caderas.' },
+      { name: 'Levantamiento de piernas', detail: 'recto inferior', sets: '4 × 10', rir: '1', tempo: '2-0-2-1', rest: '45 s',
+        yt: 'JB2oyawG9KI', gif: '',
+        why: 'Tumbado, piernas rectas: súbelas hasta la vertical y bájalas sin que los talones toquen el piso (tensión constante). Baja despacio. Recto inferior sin equipo.' },
+      { name: 'Planchas', detail: 'isométrico anti-extensión', sets: '4 × 30 seg', rir: '—', tempo: 'isométrico', rest: '45 s',
+        yt: 'pSHjTRCQxIw', gif: '',
+        why: 'Antebrazos y punta de pies, cuerpo en línea recta de cabeza a talones. Aprieta glúteo y abdomen al máximo — no dejes caer la cadera ni levantes el trasero. Core anti-extensión.' }
+    ]
   }
 };
 
@@ -1993,14 +2705,67 @@ document.getElementById('black-grid').innerHTML = BLACKLIST.map(b => `
 const tabs = document.querySelectorAll('.tab');
 const panels = document.querySelectorAll('.panel');
 
+const sectionBtns = document.querySelectorAll('.section-btn');
+const tabGroups = document.querySelectorAll('.tab-group');
+const routineSwitch = document.getElementById('routine-switch');
+const rswitchBtns = document.querySelectorAll('.rswitch-btn');
+
+// Qué grupo de tabs corresponde a cada sección, y su tab por defecto
+function currentRoutine() {
+  try { return localStorage.getItem('routine') || 'default'; } catch(e) { return 'default'; }
+}
+function groupForSection(section) {
+  if (section === 'rutinas') return 'rutinas-' + currentRoutine();
+  return section;
+}
+const defaultTabForGroup = {
+  'rutinas-default': 'lun',
+  'rutinas-genesis': 'g-lun',
+  'dietas': 'd-comidas',
+  'guia': 'nutr',
+  'metricas': 'metr'
+};
+
 function activateTab(target) {
   tabs.forEach(t => t.classList.toggle('active', t.dataset.tab === target));
   panels.forEach(p => p.classList.toggle('active', p.dataset.panel === target));
-  // Guardar último tab visitado
   try { localStorage.setItem('lastTab', target); } catch(e) {}
-  // Actualizar URL hash sin saltar
   if (history.replaceState) history.replaceState(null, '', '#' + target);
 }
+
+function activateSection(section, keepTab) {
+  sectionBtns.forEach(b => b.classList.toggle('active', b.dataset.section === section));
+  const group = groupForSection(section);
+  tabGroups.forEach(g => g.classList.toggle('active', g.dataset.group === group));
+  // El selector DEFAULT/GENESIS solo aparece en Rutinas
+  routineSwitch.style.display = (section === 'rutinas') ? 'flex' : 'none';
+  try { localStorage.setItem('lastSection', section); } catch(e) {}
+  // Activar un tab del grupo visible
+  let tab = keepTab;
+  const groupTabs = Array.from(document.querySelectorAll('.tab-group.active .tab')).map(t => t.dataset.tab);
+  if (!tab || !groupTabs.includes(tab)) tab = defaultTabForGroup[group];
+  activateTab(tab);
+}
+
+function activateRoutine(routine) {
+  try { localStorage.setItem('routine', routine); } catch(e) {}
+  rswitchBtns.forEach(b => b.classList.toggle('active', b.dataset.routine === routine));
+  activateSection('rutinas');
+}
+
+sectionBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    activateSection(btn.dataset.section);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+});
+
+rswitchBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    activateRoutine(btn.dataset.routine);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+});
 
 tabs.forEach(tab => {
   tab.addEventListener('click', () => {
@@ -2009,21 +2774,37 @@ tabs.forEach(tab => {
   });
 });
 
-// Restaurar último tab al cargar (o leer hash)
+// Mapa inverso: dado un tab, en qué sección/grupo vive
+function findSectionForTab(target) {
+  const el = Array.from(tabs).find(t => t.dataset.tab === target);
+  if (!el) return null;
+  const group = el.closest('.tab-group').dataset.group;
+  if (group.startsWith('rutinas-')) return { section: 'rutinas', routine: group.split('-')[1] };
+  return { section: group };
+}
+
+// Restaurar estado al cargar
 window.addEventListener('DOMContentLoaded', () => {
+  // Restaurar rutina guardada primero
+  const savedRoutine = currentRoutine();
+  rswitchBtns.forEach(b => b.classList.toggle('active', b.dataset.routine === savedRoutine));
+
   let initialTab = null;
   if (location.hash) initialTab = location.hash.replace('#', '');
+  if (!initialTab) { try { initialTab = localStorage.getItem('lastTab'); } catch(e) {} }
   if (!initialTab) {
-    try { initialTab = localStorage.getItem('lastTab'); } catch(e) {}
-  }
-  // Auto-seleccionar día actual si no hay nada guardado
-  if (!initialTab) {
-    const today = new Date().getDay(); // 0=dom, 1=lun, ..., 6=sab
+    const today = new Date().getDay();
     const dayMap = { 1: 'lun', 2: 'mar', 3: 'mie', 4: 'jue', 5: 'vie' };
     initialTab = dayMap[today] || 'lun';
   }
-  const validTabs = Array.from(tabs).map(t => t.dataset.tab);
-  if (validTabs.includes(initialTab)) activateTab(initialTab);
+  const loc = findSectionForTab(initialTab);
+  if (loc) {
+    if (loc.routine) { try { localStorage.setItem('routine', loc.routine); } catch(e) {}
+      rswitchBtns.forEach(b => b.classList.toggle('active', b.dataset.routine === loc.routine)); }
+    activateSection(loc.section, initialTab);
+  } else {
+    activateSection('rutinas');
+  }
 });
 
 // ============ MODAL ============
@@ -2223,6 +3004,210 @@ function closeModal() {
   if (restInterval) { clearInterval(restInterval); restInterval = null; }
   modalImg.innerHTML = '';
 }
+
+
+// ============================================================
+// DATOS DE DIETA (GENESIS · 60–65 kg · semiactivo)
+// Horarios reacomodados: entreno en la mañana → pre/post abren el día,
+// la comida de huevos cierra en la noche.
+// ============================================================
+const MEALS = [
+  { id: 'm1', name: 'Pre-entreno', time: '06:30 a.m.', tag: 'mañana',
+    p: 18, c: 30, f: 2, kcal: 210,
+    recipe: '1 scoop de proteína isolate en polvo + 40 g crema de arroz / harina de arroz (cereal de arroz Nestum, Gerber o Dragon Pharma, etc.)' },
+  { id: 'm2', name: 'Post-entreno', time: '08:30 a.m.', tag: 'mañana',
+    p: 24, c: 59, f: 12, kcal: 438,
+    recipe: '1 scoop de proteína isolate + 40 g crema de arroz + 210 g berries (fresas, moras, etc.) + 24 g crema de almendra o cacahuate' },
+  { id: 'm3', name: 'Comida 2', time: '11:00 a.m.', tag: '',
+    p: 35, c: 64, f: 4, kcal: 426,
+    recipe: '105 g carne de res molida 97/3 + 188 g arroz cocido + verduras al gusto' },
+  { id: 'm4', name: 'Comida 3', time: '02:00 p.m.', tag: '',
+    p: 35, c: 64, f: 4, kcal: 426,
+    recipe: '105 g pollo o tilapia cocida + 188 g arroz cocido + verduras al gusto' },
+  { id: 'm5', name: 'Comida 4', time: '05:00 p.m.', tag: '',
+    p: 35, c: 64, f: 19, kcal: 561,
+    recipe: '105 g pollo o tilapia cocida + 188 g arroz cocido + 93 g aguacate + verduras al gusto' },
+  { id: 'm6', name: 'Comida de huevos', time: '08:00 p.m.', tag: 'noche',
+    p: 64, c: 49, f: 24, kcal: 668,
+    recipe: '4 huevos enteros + 264 g de claras (8 claras) + 3 paquetes de salmas + verduras al gusto' }
+];
+
+// Ingredientes que SÍ se compran (diario, en unidad de compra en crudo)
+// factor: gramos crudos por día. note: aclaración de conversión.
+const SHOP = [
+  { name: 'Proteína isolate en polvo', perDay: 2, unit: 'scoops', note: 'pre + post entreno' },
+  { name: 'Crema/harina de arroz', perDay: 80, unit: 'g', note: '40 g × 2 (Nestum/Gerber)' },
+  { name: 'Berries (fresa/mora)', perDay: 210, unit: 'g', note: 'post-entreno' },
+  { name: 'Crema de almendra o cacahuate', perDay: 24, unit: 'g', note: 'post-entreno' },
+  { name: 'Carne de res molida 97/3', perDay: 140, unit: 'g crudo', note: '105 g cocido ≈ 140 g crudo' },
+  { name: 'Pollo o tilapia', perDay: 280, unit: 'g crudo', note: '2 comidas · 105 g cocido c/u ≈ 140 crudo' },
+  { name: 'Arroz blanco', perDay: 209, unit: 'g crudo', note: '564 g cocido ÷ 2.7' },
+  { name: 'Aguacate', perDay: 93, unit: 'g', note: 'comida 4' },
+  { name: 'Huevos enteros', perDay: 4, unit: 'pzas', note: 'comida de huevos' },
+  { name: 'Claras de huevo', perDay: 264, unit: 'g', note: '≈ 8 claras' },
+  { name: 'Salmas', perDay: 3, unit: 'paquetes', note: 'comida de huevos' }
+];
+
+const SUPPLEMENTS = [
+  { name: 'Proteína en polvo', dose: '1–2 scoops según necesites',
+    benefits: ['Completa tus gramos de proteína del día', 'Baja en calorías y rápida absorción', 'Sustituye una comida si no tienes tiempo o estás lleno'] },
+  { name: 'Magnesio', dose: '400 mg diarios',
+    benefits: ['Aumenta testosterona', 'Metabolismo energético', 'Función de músculos y nervios', 'Corazón y huesos sanos'] },
+  { name: 'Zinc', dose: '11 mg diarios',
+    benefits: ['Aumenta producción de testosterona', 'Mejora capacidad aeróbica', 'Fortalece el sistema inmune'] },
+  { name: 'Vitamina D3', dose: '5,000 UI diarios',
+    benefits: ['Síntesis de proteína muscular', 'Eleva testosterona', 'Aumenta fuerza muscular', 'Mineralización de huesos'] },
+  { name: 'Omega 3', dose: '1 cápsula diaria',
+    benefits: ['Reduce dolor muscular', 'Combate inflamación', 'Función cerebral', 'Síntesis de proteínas'] }
+];
+
+const SUST_CARBS = [
+  { a: '50 g arroz cocido', b: '1 paquete de salmas (18 g)' },
+  { a: '50 g arroz cocido', b: '1 tortilla de maíz' },
+  { a: '50 g arroz cocido', b: '80 g papa cocida' },
+  { a: '100 g arroz cocido', b: '33 g harina/crema/cereal de arroz' },
+  { a: '200 g arroz cocido', b: '330 g papa cocida' }
+];
+
+const RULES = [
+  'Hacer todas tus comidas al gramo. Usar báscula digital de forma estricta.',
+  'No fumar ni consumir bebidas alcohólicas.',
+  'No consumir bebidas azucaradas como jugos y refrescos. Se pueden usar bebidas "light".',
+  'Se recomienda estar en un rango de 7–18% de grasa para realizar la dieta.',
+  'Tomar mínimo 3 litros de agua al día.',
+  'Los horarios son solo sugerencia — altéralos a como mejor se acomode a tu estilo de vida.',
+  'Lo ideal es no juntar comidas, pero si no puedes hacer 6, junta 2 en 1. Lo importante es completar las comidas del día, ni más ni menos.',
+  'COMPLETAR TUS COMIDAS. Puede ser difícil, pero tienes que acabártelas todas.'
+];
+
+const FREE_FOODS = [
+  { title: 'Verduras libres', tags: ['Jitomate', 'Lechuga', 'Calabaza', 'Cebolla', 'Espinaca', 'Pimiento'] },
+  { title: 'Salsas libres', tags: ['Sriracha', 'Tabasco', 'Cholula', 'Valentina', 'Soya baja en sodio', 'Ketchup sin azúcar', 'Verde/roja casera'] },
+  { title: 'Sazonadores', tags: ['Stevia', 'Fruta de monje', 'Maple sin azúcar', 'Sal rosada', 'Limón', 'Cilantro', 'Canela', 'Hierbas de olor', 'Walden Farms', 'Chicle sin azúcar'] }
+];
+
+// ============ RENDER: COMIDAS ============
+function loadEaten() {
+  try {
+    const raw = JSON.parse(localStorage.getItem('eatenLog') || '{}');
+    const today = new Date().toISOString().slice(0, 10);
+    if (raw.day !== today) return { day: today, items: {} };
+    return raw;
+  } catch(e) { return { day: new Date().toISOString().slice(0,10), items: {} }; }
+}
+function saveEaten(log) { try { localStorage.setItem('eatenLog', JSON.stringify(log)); } catch(e) {} }
+
+function renderMeals() {
+  const el = document.getElementById('meals-list');
+  if (!el) return;
+  const log = loadEaten();
+  el.innerHTML = MEALS.map((m, i) => {
+    const eaten = !!log.items[m.id];
+    const tag = m.tag ? `<span class="tag-slot">${m.tag}</span>` : '';
+    return `
+      <div class="meal-card ${eaten ? 'eaten' : ''}" data-meal="${m.id}">
+        <div class="meal-check">${eaten ? '✓' : String(i + 1).padStart(2, '0')}</div>
+        <div class="meal-body">
+          <div class="meal-head">
+            <span class="meal-name">${m.name}${tag}</span>
+            <span class="meal-time">${m.time}</span>
+          </div>
+          <div class="meal-recipe">${m.recipe}</div>
+          <div class="meal-macros">
+            <span><b>${m.p}g</b> prot</span>
+            <span><b>${m.c}g</b> carb</span>
+            <span><b>${m.f}g</b> gras</span>
+            <span><b>${m.kcal}</b> kcal</span>
+          </div>
+        </div>
+      </div>`;
+  }).join('');
+}
+renderMeals();
+
+document.addEventListener('click', (e) => {
+  const card = e.target.closest('.meal-card');
+  if (!card) return;
+  const log = loadEaten();
+  const id = card.dataset.meal;
+  log.items[id] = !log.items[id];
+  saveEaten(log);
+  renderMeals();
+  if (navigator.vibrate) navigator.vibrate(25);
+});
+
+// ============ RENDER: LISTA DEL SÚPER ============
+let shopDays = 7;
+function fmtQty(n, unit) {
+  if (unit === 'g' || unit === 'g crudo') {
+    if (n >= 1000) return (n / 1000).toFixed(n % 1000 === 0 ? 0 : 2) + ' kg';
+    return Math.round(n) + ' g';
+  }
+  return (Math.round(n * 10) / 10) + ' ' + unit;
+}
+function renderSuper() {
+  const el = document.getElementById('super-list');
+  if (!el) return;
+  el.innerHTML = SHOP.map(item => {
+    const total = item.perDay * shopDays;
+    const unitClean = item.unit.replace(' crudo', '');
+    return `
+      <div class="super-row">
+        <div class="super-name">${item.name}<span class="sn-note">${item.note}</span></div>
+        <div class="super-qty">${fmtQty(total, item.unit)}</div>
+      </div>`;
+  }).join('');
+}
+renderSuper();
+
+const scDays = document.getElementById('sc-days');
+if (scDays) scDays.addEventListener('click', (e) => {
+  const btn = e.target.closest('button');
+  if (!btn) return;
+  shopDays = parseInt(btn.dataset.days);
+  scDays.querySelectorAll('button').forEach(b => b.classList.toggle('active', b === btn));
+  renderSuper();
+});
+
+// ============ RENDER: SUPLEMENTOS ============
+(function renderSupp() {
+  const el = document.getElementById('supp-grid');
+  if (!el) return;
+  el.innerHTML = SUPPLEMENTS.map(sp => `
+    <div class="supp-card">
+      <h3>${sp.name}</h3>
+      <div class="supp-dose">${sp.dose}</div>
+      <ul>${sp.benefits.map(b => `<li>${b}</li>`).join('')}</ul>
+    </div>`).join('');
+})();
+
+// ============ RENDER: SUSTITUCIONES ============
+(function renderSust() {
+  const el = document.getElementById('sust-carbs');
+  if (!el) return;
+  el.innerHTML = SUST_CARBS.map(x => `
+    <div class="sust-row">
+      <span class="sust-a">${x.a}</span>
+      <span class="sust-eq">≈</span>
+      <span class="sust-b">${x.b}</span>
+    </div>`).join('');
+})();
+
+// ============ RENDER: REGLAS + LIBRES ============
+(function renderRules() {
+  const el = document.getElementById('rules-list');
+  if (el) el.innerHTML = RULES.map((r, i) => `
+    <div class="rule-row">
+      <span class="rule-num">${i + 1}</span>
+      <span class="rule-text">${r}</span>
+    </div>`).join('');
+  const fg = document.getElementById('free-grid');
+  if (fg) fg.innerHTML = FREE_FOODS.map(f => `
+    <div class="free-card">
+      <h3>${f.title}</h3>
+      <div class="free-tags">${f.tags.map(t => `<span>${t}</span>`).join('')}</div>
+    </div>`).join('');
+})();
 
 // ============ REGISTRO DE PESO CORPORAL ============
 function loadBW() {
