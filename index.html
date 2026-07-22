@@ -588,6 +588,140 @@
     font-size: 0.65rem;
   }
 
+
+
+  /* Badge de carga guardada en la lista */
+  .w-inline {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem;
+    color: var(--gold);
+    margin-left: 0.5rem;
+    white-space: nowrap;
+  }
+
+  /* Progreso de sesión en el header del día */
+  .day-progress {
+    display: block;
+    margin-top: 0.4rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: var(--text-3);
+  }
+  .day-progress.complete { color: var(--accent); }
+
+  /* Registro de peso corporal (tab Métricas) */
+  .bw-card {
+    border: 1px solid var(--border);
+    background: var(--bg-2);
+    padding: 1.25rem;
+    margin-top: 1.5rem;
+  }
+  .bw-card h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 1.05rem;
+    margin-bottom: 0.75rem;
+  }
+  .bw-list { margin-top: 1rem; }
+  .bw-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.45rem 0;
+    border-bottom: 1px solid var(--border);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+  }
+  .bw-row .d { color: var(--text-3); }
+  .bw-row .delta.up { color: var(--green); }
+  .bw-row .delta.down { color: var(--red); }
+  .bw-row .delta.flat { color: var(--text-3); }
+  .bw-empty { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--text-3); margin-top: 0.75rem; }
+
+  /* ============ VIDEO EMBED EN MODAL ============ */
+  .modal-img .video-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+  }
+  .modal-img .video-wrap iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+  .yt-search-link {
+    display: inline-block;
+    margin-top: 0.75rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border-2);
+    color: var(--text-2);
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .yt-search-link:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ============ CHECK DE SERIE COMPLETADA ============ */
+  .ex-row.done { opacity: 0.45; }
+  .ex-row.done .ex-num {
+    background: var(--accent);
+    color: var(--bg);
+  }
+  .ex-num { cursor: pointer; user-select: none; }
+
+  /* ============ TIMER DE DESCANSO ============ */
+  .rest-timer-btn {
+    display: inline-block;
+    margin-top: 0.75rem;
+    min-height: 44px;
+    padding: 0.6rem 1.1rem;
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .rest-timer-btn.running { background: var(--accent); color: var(--bg); }
+  .rest-timer-btn.finished { border-color: var(--green); color: var(--green); }
+
+  /* ============ REGISTRO DE CARGA ============ */
+  .weight-log { display: flex; gap: 0.5rem; margin-top: 0.6rem; align-items: center; flex-wrap: wrap; }
+  .weight-log input {
+    width: 90px;
+    min-height: 44px;
+    box-sizing: border-box;
+    padding: 0.5rem;
+    background: var(--bg-3);
+    border: 1px solid var(--border-2);
+    color: var(--text);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+  }
+  .weight-log input:focus { outline: none; border-color: var(--accent); }
+  .weight-log button {
+    min-height: 44px;
+    padding: 0.5rem 0.9rem;
+    background: var(--bg-3);
+    border: 1px solid var(--border-2);
+    color: var(--text-2);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .weight-log button:hover { border-color: var(--accent); color: var(--accent); }
+  .weight-log .saved { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--gold); }
+
   .modal-content {
     padding: 1.75rem;
   }
@@ -596,8 +730,11 @@
     position: absolute;
     top: 0.75rem;
     right: 0.75rem;
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
+    z-index: 20;
+    background: rgba(10, 10, 10, 0.85);
+    border: 1px solid var(--border-2);
     background: var(--bg-3);
     border: 1px solid var(--border-2);
     color: var(--text);
@@ -1079,9 +1216,14 @@
     .day-info { text-align: left; }
     .day-number { font-size: 3rem; }
     .day-title h2 { font-size: 1.75rem; }
-    .modal { grid-template-columns: 1fr; max-height: 95vh; }
-    .modal-img { min-height: 250px; border-right: none; border-bottom: 1px solid var(--border); }
-    .modal-content { padding: 1.25rem; }
+    .modal { grid-template-columns: 1fr; max-height: 92vh; }
+    .modal-img { min-height: 0; border-right: none; border-bottom: 1px solid var(--border); }
+    .modal-content { padding: 1.25rem 1.25rem calc(1.5rem + var(--sab)); }
+    .rest-timer-btn { width: 100%; text-align: center; }
+    .weight-log input { flex: 1; min-width: 0; }
+    .weight-log .saved { flex-basis: 100%; }
+    .yt-search-link { font-size: 0.58rem; padding: 0.5rem 0.75rem; }
+    .w-inline { display: block; margin-left: 0; margin-top: 0.15rem; }
     .prog-grid { grid-template-columns: repeat(2, 1fr); }
     main { padding: 1.5rem 1rem 3rem; }
     .section-title h2 { font-size: 1.6rem; }
@@ -1111,7 +1253,7 @@
 <header class="hero">
   <div class="hero-grid">
     <div>
-      <div class="brand">Greek God Protocol · v1.0</div>
+      <div class="brand">Greek God Protocol · v1.1</div>
       <h1 class="title">Construir<br><em>el físico.</em></h1>
       <p class="subtitle">// Lean bulk · 2–3 años · prioridad estética: deltoides 3D, V-taper, cintura estrecha</p>
     </div>
@@ -1144,6 +1286,7 @@
     <button class="tab" data-tab="mie">Mié · Pull</button>
     <button class="tab" data-tab="jue">Jue · Push 2</button>
     <button class="tab" data-tab="vie">Vie · Arms+Delt</button>
+    <button class="tab" data-tab="abs">Abs · Express</button>
     <button class="tab" data-tab="vol">Volumen</button>
     <button class="tab" data-tab="prog">Progresión</button>
     <button class="tab" data-tab="nutr">Nutrición</button>
@@ -1324,7 +1467,7 @@
     <div class="info-card">
       <div class="ico">A</div>
       <h3>Peso semanal</h3>
-      <p>Sábado mañana, en ayunas, post-baño. Una sola medición por semana evita ruido diario.</p>
+      <p>Sábado mañana, en ayunas, post-baño. Una sola medición por semana evita ruido diario. Regístralo abajo ↓</p>
     </div>
     <div class="info-card">
       <div class="ico">B</div>
@@ -1341,6 +1484,15 @@
       <h3>PRs en rutina</h3>
       <p>Press inc DB · curl DB inclinado · dominada lastrada. Si hay progresión, hay hipertrofia.</p>
     </div>
+  </div>
+
+  <div class="bw-card">
+    <h3>Registro de peso corporal <em style="font-family:'JetBrains Mono',monospace;font-style:normal;font-size:0.6rem;color:var(--text-3);letter-spacing:0.12em;"> · sábado en ayunas</em></h3>
+    <div class="weight-log">
+      <input type="number" step="0.1" min="0" inputmode="decimal" id="bw-input" placeholder="kg">
+      <button id="bw-save">Guardar hoy</button>
+    </div>
+    <div class="bw-list" id="bw-list"></div>
   </div>
 
   <div class="section-title" style="margin-top:2.5rem;">
@@ -1424,7 +1576,7 @@
     <div class="info-card">
       <div class="ico">★</div>
       <h3>Click en ejercicio</h3>
-      <p>Toca cualquier ejercicio en la lista para abrir el detalle con GIF y justificación científica.</p>
+      <p>Toca cualquier ejercicio para abrir su video de técnica, timer de descanso y registro de carga. Toca el <strong>número</strong> del ejercicio para marcarlo completado (se reinicia cada semana).</p>
     </div>
     <div class="info-card">
       <div class="ico">⚡</div>
@@ -1579,7 +1731,7 @@ const DAYS = {
     tags: ['gym', 'push 1', 'upper chest', 'lat delt'],
     exercises: [
       { name: 'Press inclinado mancuerna', detail: 'banco 30°', sets: '4 × 6–8', rir: '1–2', tempo: '2-1-1-0', rest: '3 min',
-        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2023/03/30-degree-incline-dumbbell-bench-press.gif',
+        yt: 'hChjZQhX1Ls', gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2023/03/30-degree-incline-dumbbell-bench-press.gif',
         why: 'Lift de chequeo + énfasis upper chest. 30° > 45° para clavicular sin invadir delt anterior.' },
       { name: 'Press plano máquina', detail: 'pectoral medio', sets: '3 × 8–10', rir: '1', tempo: '—', rest: '2.5 min',
         gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2023/02/machine-chest-press.gif',
@@ -1591,7 +1743,7 @@ const DAYS = {
         gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2023/06/seated-dumbbell-shoulder-press.gif',
         why: 'Compound delt anterior; sentado aísla lumbar.' },
       { name: 'Elevaciones laterales mancuerna', detail: 'de pie · prioridad #1', sets: '4 × 10–15', rir: '0–1', tempo: '2-0-1-1', rest: '90 s',
-        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/04/dumbbell-lateral-raise.gif',
+        yt: '3VcKaXpzqRo', gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/04/dumbbell-lateral-raise.gif',
         why: 'Prioridad estética máxima. Codo ligeramente flexionado, no encogimiento de trapecio.' },
       { name: 'Extensión tríceps cuerda overhead', detail: 'long head bias', sets: '3 × 10–12', rir: '0–1', tempo: '3-0-1-1', rest: '90 s',
         gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2023/02/overhead-cable-tricep-extension.gif',
@@ -1604,7 +1756,7 @@ const DAYS = {
     tags: ['gym', 'cuádriceps', 'glúteo', 'hamstring'],
     exercises: [
       { name: 'Sentadilla barra alta', detail: 'high bar · paralelo', sets: '4 × 6–8', rir: '1–2', tempo: '2-1-1-0', rest: '3–4 min',
-        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/03/high-bar-back-squat.gif',
+        yt: 'CCpr-xZWTng', gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/03/high-bar-back-squat.gif',
         why: 'Compound axial. Stance medio. Profundidad paralelo o ligeramente abajo.' },
       { name: 'Prensa 45°', detail: 'pies medios', sets: '3 × 10–12', rir: '1', tempo: '—', rest: '3 min',
         gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/04/45-degree-leg-press.gif',
@@ -1625,7 +1777,7 @@ const DAYS = {
   },
   mie: {
     num: '03', title: 'Pull', subtitle: 'espalda · bíceps · rear delt',
-    duration: '~75 min', location: 'Casa · Marcy', sets: 24,
+    duration: '~65 min', location: 'Casa · Marcy', sets: 21,
     tags: ['casa', 'pull', 'lats', 'bíceps'],
     exercises: [
       { name: 'Jalón polea alta Marcy', detail: 'agarre ancho neutro', sets: '4 × 8–12', rir: '1', tempo: '2-0-1-1', rest: '2.5 min',
@@ -1638,17 +1790,14 @@ const DAYS = {
         gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/06/single-arm-dumbbell-row.gif',
         why: 'ROM unilateral mayor + corrige asimetrías. Carga hasta tu DB máx (24 kg).' },
       { name: 'Pullover mancuerna', detail: 'banco transversal', sets: '3 × 10–12', rir: '0–1', tempo: '3-0-1-1', rest: '90 s',
-        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/05/dumbbell-pullover.gif',
+        yt: 'Cvsaj2AXevI', gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/05/dumbbell-pullover.gif',
         why: 'Lat en stretch profundo bajo carga. Mejor ejercicio del Marcy setup para lat hipertrofia.' },
       { name: 'Face pulls polea baja', detail: 'hacia la cara', sets: '4 × 12–15', rir: '0–1', tempo: '2-0-1-1', rest: '90 s',
-        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/04/face-pull.gif',
+        yt: 'eTCBSFlCJ_s', gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/04/face-pull.gif',
         why: 'Rear delt + rotadores externos. Salud articular del hombro priorizada.' },
       { name: 'Curl mancuerna inclinado', detail: 'banco 45° · long head', sets: '3 × 8–12', rir: '0–1', tempo: '3-0-1-1', rest: '90 s',
-        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/05/incline-dumbbell-curl.gif',
-        why: 'Bíceps cabeza larga en stretch → pico. Si 13.5 kg no sale 3x: usa 11.25 kg + microplates.' },
-      { name: 'Curl martillo mancuerna', detail: 'braquial + braquiorradial', sets: '3 × 10–12', rir: '0–1', tempo: '—', rest: '90 s',
-        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/05/hammer-curl.gif',
-        why: 'Braquial + braquiorradial = grosor del brazo entre bíceps y tríceps.' }
+        yt: 'DCe8f6vMe9A', gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/05/incline-dumbbell-curl.gif',
+        why: 'Bíceps cabeza larga en stretch → pico. Si 13.5 kg no sale 3x: usa 11.25 kg + microplates.' }
     ]
   },
   jue: {
@@ -1657,13 +1806,13 @@ const DAYS = {
     tags: ['gym', 'push 2', 'shoulder day', 'lat delt'],
     exercises: [
       { name: 'Press militar barra de pie', detail: 'OHP · pico de fuerza', sets: '4 × 6–8', rir: '1–2', tempo: '2-1-1-0', rest: '3 min',
-        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/04/standing-barbell-shoulder-press.gif',
+        yt: '2yjwXTZQDDI', gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/04/standing-barbell-shoulder-press.gif',
         why: 'Pico de fuerza delt anterior. Barbell > DB para sobrecarga progresiva limpia.' },
       { name: 'Press inclinado máquina', detail: 'Hammer u otra', sets: '3 × 8–10', rir: '1', tempo: '—', rest: '2.5 min',
         gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2023/05/hammer-strength-incline-chest-press.gif',
         why: '2º hit upper chest en vector distinto al lunes (machine plane vs DB).' },
       { name: 'Elevación lateral cable', detail: 'polea baja contralateral', sets: '4 × 10–15', rir: '0–1', tempo: '2-0-1-1', rest: '90 s',
-        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/05/cable-lateral-raise.gif',
+        yt: 'dGZlbRF6MR0', gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/05/cable-lateral-raise.gif',
         why: 'Tensión constante en el bottom range del lat delt (DB tiene zero tension ahí).' },
       { name: 'Elevación lateral tumbado', detail: 'banco inclinado · de lado', sets: '3 × 12–15', rir: '0–1', tempo: '2-0-1-1', rest: '90 s',
         gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/05/lying-side-lateral-raise.gif',
@@ -1682,7 +1831,7 @@ const DAYS = {
     tags: ['gym', 'brazos', 'pump', 'lat delt 3x'],
     exercises: [
       { name: 'Elevación lateral cable polea baja', detail: 'contralateral · 3er hit lat delt', sets: '4 × 12–15', rir: '0–1', tempo: '2-0-1-1', rest: '75 s',
-        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/05/cable-lateral-raise.gif',
+        yt: 'dGZlbRF6MR0', gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/05/cable-lateral-raise.gif',
         why: 'Tensión constante en bottom range donde DB tiene zero — crítico para 3er hit lat delt.' },
       { name: 'Reverse pec deck', detail: 'rear delt machine · aislamiento real', sets: '4 × 12–15', rir: '0–1', tempo: '2-0-1-1', rest: '75 s',
         gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/05/reverse-pec-deck-fly.gif',
@@ -1693,15 +1842,32 @@ const DAYS = {
       { name: 'Extensión tríceps overhead cuerda', detail: 'polea · long head bias', sets: '3 × 10–12', rir: '0–1', tempo: '3-0-1-1', rest: '90 s',
         gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2023/02/overhead-cable-tricep-extension.gif',
         why: 'Cuerda en polea = resistencia suave en stretch; superior a DB a dos manos para long head.' },
-      { name: 'Pushdown polea V-bar o cuerda', detail: 'cabeza lateral · finisher', sets: '3 × 12–15', rir: '0–1', tempo: '2-0-1-1', rest: '75 s',
-        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/04/rope-tricep-pushdown.gif',
-        why: 'Más carga disponible que stack Marcy; cabeza lateral finisher.' },
+      { name: 'Curl martillo mancuerna', detail: 'braquial + braquiorradial · movido del Mié', sets: '3 × 10–12', rir: '0–1', tempo: '—', rest: '75 s',
+        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/05/hammer-curl.gif',
+        why: 'Braquial + braquiorradial = grosor del brazo. Movido aquí para acortar el Mié (24→21 sets) y recortar tríceps de 15→12 sets/sem (estaba sobre tu propio MAV de 10–14).' },
       { name: 'Leg curl sentado máquina', detail: 'ham 2x freq · curva real', sets: '4 × 10–15', rir: '0–1', tempo: '3-0-1-1', rest: '90 s',
         gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/08/seated-leg-curl.gif',
         why: 'Curva de resistencia real vs rodillos Marcy; permite más carga y progresión limpia.' },
       { name: 'Leg extension máquina', detail: 'quad 2x freq · más carga', sets: '4 × 12–15', rir: '0–1', tempo: '2-0-1-1', rest: '90 s',
         gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/09/leg-extension.gif',
         why: 'Más carga, mejor pad, progresión lineal más fácil que Marcy extension.' }
+    ]
+  }
+,
+  abs: {
+    num: '06', title: 'Abs', subtitle: 'core express · en cualquier lugar',
+    duration: '~10 min', location: 'Casa o Gym', sets: 8,
+    tags: ['solo suelo + mancuerna', 'post Lun + Jue', '2–3x/sem', 'cero oblicuos con carga'],
+    exercises: [
+      { name: 'Crunch con mancuerna en el pecho', detail: 'suelo · carga progresiva con tus DB', sets: '3 × 10–15', rir: '0–1', tempo: '2-1-1-1', rest: '60 s',
+        yt: 'cbwLMF7oJGI', gif: '',
+        why: 'Recto abdominal con sobrecarga progresiva usando tus mancuernas de casa (hasta 24 kg de recorrido de progresión). Flexiona la columna vértebra a vértebra, no tires del cuello. Pausa 1s arriba apretando. Cuando 3×15 salga fácil: sube peso, no reps infinitas. En gym puedes sustituir por crunch en polea alta si prefieres.' },
+      { name: 'Reverse crunch en el suelo', detail: 'curl de pelvis · recto inferior', sets: '3 × 12–15', rir: '0–1', tempo: '2-0-1-1', rest: '60 s',
+        yt: 'XY8KzdDcMFg', gif: '',
+        why: 'Recto inferior sin barra ni equipo: tumbado, rodillas a 90°, curlea la pelvis despegando la cadera del suelo — el movimiento es de la pelvis, no de las piernas. Progresión: pausa arriba → piernas más extendidas → mancuerna ligera sujeta entre los pies. Cero estrés lumbar.' },
+      { name: 'Ab wheel de rodillas', detail: 'o plancha RKC 3×30s si no hay rueda', sets: '2 × 8–12', rir: '1', tempo: '3-0-1-0', rest: '60 s',
+        yt: 'PK4n7qJpOhM', gif: '',
+        why: 'Anti-extensión: recto + transverso isométricos bajo estiramiento — cintura más plana por control del core, no más ancha. Rango parcial hasta dominar el completo; glúteo apretado para proteger lumbar. Sin rueda: plancha RKC (plancha normal apretando todo al máximo) 3×30s.' }
     ]
   }
 };
@@ -1713,11 +1879,12 @@ const VOLUME = [
   ['Deltoide posterior', 8, 6, '12–16', 20, 'MEV–MAV', 'ok'],
   ['Espalda (lats+thick)', 14, 10, '14–22', 25, 'MAV bajo · 1x freq', 'accent'],
   ['Bíceps', 9, 8, '14–20', 24, 'MEV alto · escalable', 'info'],
-  ['Tríceps', 15, 6, '10–14', 18, 'MAV alto · push priority', 'accent'],
+  ['Tríceps', 12, 6, '10–14', 18, 'MAV · dentro de rango', 'ok'],
   ['Cuádriceps', 14, 8, '12–18', 20, 'MAV', 'accent'],
   ['Hamstrings', 8, 4, '10–14', 18, 'MEV–MAV', 'ok'],
   ['Glúteos', '3 directo', 4, '8–12', 16, 'MEV con indirecto', 'ok'],
-  ['Gemelos', 6, 6, '12–16', 20, 'MEV · escalable', 'info']
+  ['Gemelos', 6, 6, '12–16', 20, 'MEV · escalable', 'info'],
+  ['Abs (recto)', 8, 0, '8–16', 20, 'Express 2–3x', 'info']
 ];
 
 const FREQ = [
@@ -1731,7 +1898,8 @@ const FREQ = [
   ['Cuádriceps', '2x', 'Mar + Vie'],
   ['Hamstrings', '2x', 'Mar + Vie'],
   ['Glúteos', '1x directo', 'Mar'],
-  ['Gemelos', '1–2x', 'Mar (+ Vie opcional)']
+  ['Gemelos', '1–2x', 'Mar (+ Vie opcional)'],
+  ['Abs', '2–3x', 'Post Lun + Jue (10 min)']
 ];
 
 const BLACKLIST = [
@@ -1759,7 +1927,7 @@ function renderDay(key) {
       <div class="ex-num">${String(i + 1).padStart(2, '0')}</div>
       <div class="ex-main">
         <h3>${e.name}</h3>
-        <p>${e.detail}</p>
+        <p>${e.detail}<span class="w-inline" data-w="${e.name.replace(/"/g,'')}"></span></p>
       </div>
       <div class="ex-stat primary"><div class="lbl">S×R</div><div class="val accent">${e.sets}</div></div>
       <div class="ex-stat"><div class="lbl">RIR</div><div class="val">${e.rir}</div></div>
@@ -1782,6 +1950,7 @@ function renderDay(key) {
           ${d.location}<br>
           <strong>${d.duration}</strong>
           ${d.sets} sets totales
+          <span class="day-progress" data-dp="${key}">0/${d.exercises.length} completados</span>
         </div>
       </div>
       <div class="ex-list">${exHtml}</div>
@@ -1863,15 +2032,113 @@ const modalImg = document.getElementById('modal-img');
 const modalContent = document.getElementById('modal-content');
 const modalClose = document.getElementById('modal-close');
 
+// ============ SESIÓN: MARCAR COMPLETADO (persistente por semana) ============
+function weekKey() {
+  const d = new Date();
+  const onejan = new Date(d.getFullYear(), 0, 1);
+  const wk = Math.ceil((((d - onejan) / 86400000) + onejan.getDay() + 1) / 7);
+  return d.getFullYear() + '-W' + wk;
+}
+function loadDone() {
+  try {
+    const raw = JSON.parse(localStorage.getItem('doneLog') || '{}');
+    if (raw.week !== weekKey()) return { week: weekKey(), items: {} };
+    return raw;
+  } catch(e) { return { week: weekKey(), items: {} }; }
+}
+function saveDone(log) { try { localStorage.setItem('doneLog', JSON.stringify(log)); } catch(e) {} }
+function applyDoneStyles() {
+  const log = loadDone();
+  document.querySelectorAll('.ex-row').forEach(row => {
+    const k = row.dataset.day + '-' + row.dataset.ex;
+    row.classList.toggle('done', !!log.items[k]);
+  });
+  // Contador x/y por día
+  Object.keys(DAYS).forEach(key => {
+    const total = DAYS[key].exercises.length;
+    let n = 0;
+    for (let i = 0; i < total; i++) if (log.items[key + '-' + i]) n++;
+    const el = document.querySelector('[data-dp="' + key + '"]');
+    if (el) {
+      el.textContent = n + '/' + total + (n === total ? ' · sesión completa ✓' : ' completados');
+      el.classList.toggle('complete', n === total);
+    }
+  });
+}
+
+// ============ BADGES DE CARGA EN LA LISTA ============
+function refreshWeightBadges() {
+  document.querySelectorAll('.w-inline').forEach(el => {
+    let v = '';
+    try { v = localStorage.getItem('w-' + el.dataset.w) || ''; } catch(e) {}
+    el.textContent = v ? '· ' + v + ' kg' : '';
+  });
+}
+refreshWeightBadges();
+applyDoneStyles();
+
+// ============ TIMER DE DESCANSO ============
+let restInterval = null;
+function parseRestSeconds(str) {
+  const m = String(str).match(/([\d.]+)/);
+  if (!m) return 90;
+  const n = parseFloat(m[1]);
+  return /min/i.test(str) ? Math.round(n * 60) : Math.round(n);
+}
+function fmtTime(t) {
+  const m = Math.floor(t / 60), sec = t % 60;
+  return m + ':' + String(sec).padStart(2, '0');
+}
+
+// ============ MODAL ============
 document.addEventListener('click', (e) => {
+  // Toque en el número = marcar ejercicio completado (no abre modal)
+  const num = e.target.closest('.ex-num');
+  if (num) {
+    const row = num.closest('.ex-row');
+    if (row) {
+      const log = loadDone();
+      const k = row.dataset.day + '-' + row.dataset.ex;
+      log.items[k] = !log.items[k];
+      saveDone(log);
+      applyDoneStyles();
+      if (navigator.vibrate) navigator.vibrate(30);
+    }
+    return;
+  }
+
   const row = e.target.closest('.ex-row');
   if (!row) return;
   const day = row.dataset.day;
   const idx = parseInt(row.dataset.ex);
   const ex = DAYS[day].exercises[idx];
 
-  const ytQuery = encodeURIComponent(ex.name + ' technique');
-  modalImg.innerHTML = `<img src="${ex.gif}" alt="${ex.name}" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<div class=\\'placeholder\\'>// GIF no disponible<br><strong>${ex.name}</strong><br><a href=\\'https://www.youtube.com/results?search_query=${ytQuery}\\' target=\\'_blank\\'>Buscar en YouTube ↗</a></div>'">`;
+  const ytQuery = encodeURIComponent(ex.name + ' técnica forma correcta');
+  const searchBtn = `<a class="yt-search-link" href="https://www.youtube.com/results?search_query=${ytQuery}" target="_blank" rel="noopener">Más videos en YouTube ↗</a>`;
+
+  if (ex.yt) {
+    // Video de técnica embebido
+    modalImg.innerHTML = `
+      <div style="width:100%; padding:0.75rem;">
+        <div class="video-wrap">
+          <iframe src="https://www.youtube-nocookie.com/embed/${ex.yt}?rel=0&modestbranding=1"
+            title="${ex.name}" loading="lazy" allow="accelerometer; encrypted-media; picture-in-picture"
+            allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        </div>
+        <div style="text-align:center;">${searchBtn}</div>
+      </div>`;
+  } else if (ex.gif) {
+    modalImg.innerHTML = `<div style="width:100%; text-align:center; padding:0.75rem;">
+      <img src="${ex.gif}" alt="${ex.name}" loading="lazy"
+        onerror="this.style.display='none';this.parentElement.innerHTML='<div class=\\'placeholder\\'>// GIF no disponible<br><strong>${ex.name}</strong><br><a href=\\'https://www.youtube.com/results?search_query=${ytQuery}\\' target=\\'_blank\\'>Buscar video en YouTube ↗</a></div>'">
+      <div>${searchBtn}</div>
+    </div>`;
+  } else {
+    modalImg.innerHTML = `<div class="placeholder">// demo<br><strong>${ex.name}</strong><br>${searchBtn}</div>`;
+  }
+
+  const restSecs = parseRestSeconds(ex.rest);
+  const savedW = (() => { try { return localStorage.getItem('w-' + ex.name) || ''; } catch(e) { return ''; } })();
 
   modalContent.innerHTML = `
     <h3>${ex.name}</h3>
@@ -1882,6 +2149,17 @@ document.addEventListener('click', (e) => {
       <div class="modal-stat"><div class="l">RIR</div><div class="v">${ex.rir}</div></div>
       <div class="modal-stat"><div class="l">Tempo</div><div class="v">${ex.tempo}</div></div>
       <div class="modal-stat"><div class="l">Descanso</div><div class="v">${ex.rest}</div></div>
+    </div>
+
+    <button class="rest-timer-btn" id="rest-timer" data-secs="${restSecs}">▶ Descanso ${fmtTime(restSecs)}</button>
+
+    <div class="modal-section">
+      <h4>// tu carga actual</h4>
+      <div class="weight-log">
+        <input type="number" step="0.25" min="0" inputmode="decimal" id="w-input" placeholder="kg" value="${savedW}">
+        <button id="w-save">Guardar</button>
+        <span class="saved" id="w-msg">${savedW ? 'Última: ' + savedW + ' kg' : 'Sin registro'}</span>
+      </div>
     </div>
 
     <div class="modal-section">
@@ -1895,6 +2173,42 @@ document.addEventListener('click', (e) => {
     </div>
   `;
 
+  // Timer de descanso
+  const timerBtn = document.getElementById('rest-timer');
+  timerBtn.addEventListener('click', () => {
+    if (restInterval) {
+      clearInterval(restInterval); restInterval = null;
+      timerBtn.classList.remove('running');
+      timerBtn.textContent = '▶ Descanso ' + fmtTime(restSecs);
+      return;
+    }
+    let t = parseInt(timerBtn.dataset.secs);
+    timerBtn.classList.remove('finished');
+    timerBtn.classList.add('running');
+    timerBtn.textContent = fmtTime(t);
+    restInterval = setInterval(() => {
+      t--;
+      if (t <= 0) {
+        clearInterval(restInterval); restInterval = null;
+        timerBtn.classList.remove('running');
+        timerBtn.classList.add('finished');
+        timerBtn.textContent = '✓ ¡A la serie!';
+        if (navigator.vibrate) navigator.vibrate([200, 100, 200]);
+      } else {
+        timerBtn.textContent = fmtTime(t);
+      }
+    }, 1000);
+  });
+
+  // Registro de carga
+  document.getElementById('w-save').addEventListener('click', () => {
+    const v = document.getElementById('w-input').value;
+    if (!v) return;
+    try { localStorage.setItem('w-' + ex.name, v); } catch(e) {}
+    document.getElementById('w-msg').textContent = 'Guardado: ' + v + ' kg ✓';
+    refreshWeightBadges();
+  });
+
   modal.classList.add('active');
   document.body.style.overflow = 'hidden';
 });
@@ -1906,7 +2220,50 @@ document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal
 function closeModal() {
   modal.classList.remove('active');
   document.body.style.overflow = '';
+  if (restInterval) { clearInterval(restInterval); restInterval = null; }
+  modalImg.innerHTML = '';
 }
+
+// ============ REGISTRO DE PESO CORPORAL ============
+function loadBW() {
+  try { return JSON.parse(localStorage.getItem('bwLog') || '[]'); } catch(e) { return []; }
+}
+function renderBW() {
+  const list = document.getElementById('bw-list');
+  if (!list) return;
+  const log = loadBW();
+  if (!log.length) {
+    list.innerHTML = '<div class="bw-empty">// sin registros aún · objetivo: +0.5 a 1 kg/mes</div>';
+    return;
+  }
+  const last8 = log.slice(-8);
+  list.innerHTML = last8.map((e, i) => {
+    const prev = i > 0 ? last8[i - 1].kg : (log.length > 8 ? log[log.length - 9].kg : null);
+    let delta = '';
+    if (prev !== null) {
+      const d = Math.round((e.kg - prev) * 10) / 10;
+      const cls = d > 0 ? 'up' : (d < 0 ? 'down' : 'flat');
+      delta = '<span class="delta ' + cls + '">' + (d > 0 ? '+' : '') + d.toFixed(1) + '</span>';
+    }
+    return '<div class="bw-row"><span class="d">' + e.d + '</span><span>' + e.kg.toFixed(1) + ' kg</span>' + (delta || '<span class="delta flat">—</span>') + '</div>';
+  }).reverse().join('');
+}
+renderBW();
+
+const bwSave = document.getElementById('bw-save');
+if (bwSave) bwSave.addEventListener('click', () => {
+  const input = document.getElementById('bw-input');
+  const v = parseFloat(input.value);
+  if (!v || v <= 0) return;
+  const log = loadBW();
+  const today = new Date().toISOString().slice(0, 10);
+  const existing = log.findIndex(e => e.d === today);
+  if (existing >= 0) log[existing].kg = v; else log.push({ d: today, kg: v });
+  try { localStorage.setItem('bwLog', JSON.stringify(log)); } catch(e) {}
+  input.value = '';
+  renderBW();
+  if (navigator.vibrate) navigator.vibrate(30);
+});
 
 // ============ PWA INSTALL HANDLING ============
 const installBanner = document.getElementById('install-banner');
