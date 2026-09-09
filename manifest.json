@@ -1,13 +1,16 @@
 {
+  "id": "/greek-god/",
   "name": "Greek God Protocol",
   "short_name": "Greek God",
-  "description": "Rutina personal lean bulk",
+  "description": "Rutina KeepCool + Greek God · lean bulk, registro de cargas y métricas",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#0a0a0a",
   "theme_color": "#0a0a0a",
   "start_url": "./index.html",
   "scope": "./",
+  "lang": "es",
+  "categories": ["health", "fitness", "lifestyle"],
   "icons": [
     {
       "src": "icon-192.png",
@@ -20,6 +23,32 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Sesión 1 · Push",
+      "short_name": "S1 Push",
+      "url": "./index.html#k-s1",
+      "icons": [{ "src": "icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Sesión 2 · Pull",
+      "short_name": "S2 Pull",
+      "url": "./index.html#k-s2",
+      "icons": [{ "src": "icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Sesión 3 · Legs",
+      "short_name": "S3 Legs",
+      "url": "./index.html#k-s3",
+      "icons": [{ "src": "icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Métricas",
+      "short_name": "Métricas",
+      "url": "./index.html#metr",
+      "icons": [{ "src": "icon-192.png", "sizes": "192x192" }]
     }
   ]
 }
