@@ -738,20 +738,6 @@
   .bw-row .delta.flat { color: var(--text-3); }
   .bw-empty { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--text-3); margin-top: 0.75rem; }
 
-  /* ============ VIDEO EMBED EN MODAL ============ */
-  .modal-img .video-wrap {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    background: #000;
-  }
-  .modal-img .video-wrap iframe {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    border: 0;
-  }
   .yt-search-link {
     display: inline-block;
     margin-top: 0.75rem;
@@ -1968,6 +1954,37 @@
     .rest-bar { bottom: calc(62px + var(--sab)); }
     main { padding-bottom: 2rem; }
   }
+
+  /* ---------- Demostración en GIF ---------- */
+  .gif-wrap {
+    position: relative;
+    width: 100%;
+    min-height: 240px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem;
+  }
+  .gif-wrap img {
+    max-width: 100%;
+    max-height: 420px;
+    border-radius: 8px;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+  .gif-wrap.ready img { opacity: 1; }
+  .gif-load {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-3);
+  }
+  .gif-wrap.ready .gif-load { display: none; }
 
   /* ---------- Fallback de demostración ---------- */
   .modal-img .placeholder {
@@ -3663,22 +3680,22 @@ const DAYS = {
     tags: ['gym', 'push 1', 'upper chest', 'lat delt'],
     exercises: [
       { name: 'Press inclinado mancuerna', detail: 'banco 30°', sets: '4 × 6–8', rir: '1–2', tempo: '2-1-1-0', rest: '3 min',
-        yt: 'hChjZQhX1Ls', gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2023/03/30-degree-incline-dumbbell-bench-press.gif',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Incline-Dumbbell-Press.gif',
         why: 'Lift de chequeo + énfasis upper chest. 30° > 45° para clavicular sin invadir delt anterior.' },
       { name: 'Press plano máquina', detail: 'pectoral medio', sets: '3 × 8–10', rir: '1', tempo: '—', rest: '2.5 min',
-        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2023/02/machine-chest-press.gif',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/08/Lying-Chest-Press-Machine.gif',
         why: 'Fallo seguro sin estabilización, volumen extra de pecho.' },
       { name: 'Cruces polea inclinada', detail: 'low-to-high', sets: '3 × 10–12', rir: '0–1', tempo: '2-0-1-1', rest: '90 s',
-        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/05/low-to-high-cable-fly.gif',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Low-Cable-Crossover.gif',
         why: 'Upper chest en stretch + tensión constante. Mejor curva de fuerza que DB fly.' },
       { name: 'Press militar mancuerna sentado', detail: 'delt anterior', sets: '3 × 8–10', rir: '1', tempo: '—', rest: '2.5 min',
-        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2023/06/seated-dumbbell-shoulder-press.gif',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Shoulder-Press.gif',
         why: 'Compound delt anterior; sentado aísla lumbar.' },
       { name: 'Elevaciones laterales mancuerna', detail: 'de pie · prioridad #1', sets: '4 × 10–15', rir: '0–1', tempo: '2-0-1-1', rest: '90 s',
-        yt: '3VcKaXpzqRo', gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/04/dumbbell-lateral-raise.gif',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/08/Lying-Chest-Press-Machine.gif',
         why: 'Prioridad estética máxima. Codo ligeramente flexionado, no encogimiento de trapecio.' },
       { name: 'Extensión tríceps cuerda overhead', detail: 'long head bias', sets: '3 × 10–12', rir: '0–1', tempo: '3-0-1-1', rest: '90 s',
-        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2023/02/overhead-cable-tricep-extension.gif',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/04/Cable-Rope-Overhead-Triceps-Extension.gif',
         why: 'Cabeza larga del tríceps en stretch (Beardsley: long-length bias).' }
     ]
   },
@@ -3688,22 +3705,22 @@ const DAYS = {
     tags: ['gym', 'cuádriceps', 'glúteo', 'hamstring'],
     exercises: [
       { name: 'Sentadilla barra alta', detail: 'high bar · paralelo', sets: '4 × 6–8', rir: '1–2', tempo: '2-1-1-0', rest: '3–4 min',
-        yt: 'CCpr-xZWTng', gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/03/high-bar-back-squat.gif',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/04/Cable-Rope-Overhead-Triceps-Extension.gif',
         why: 'Compound axial. Stance medio. Profundidad paralelo o ligeramente abajo.' },
       { name: 'Prensa 45°', detail: 'pies medios', sets: '3 × 10–12', rir: '1', tempo: '—', rest: '3 min',
-        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/04/45-degree-leg-press.gif',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2015/11/Leg-Press.gif',
         why: 'Sobrecarga cuádriceps/glúteo sin estrés axial adicional.' },
       { name: 'Hip thrust máquina', detail: 'o barra acolchada', sets: '3 × 8–12', rir: '0–1', tempo: '2-1-1-0', rest: '2 min',
-        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/06/barbell-hip-thrust.gif',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Hip-Thrust.gif',
         why: 'Glúteo alto para line de V-taper inferior. Sin erectores.' },
       { name: 'Curl femoral tumbado', detail: 'hamstring isolation', sets: '4 × 8–12', rir: '0–1', tempo: '3-0-1-1', rest: '90 s',
-        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/11/lying-leg-curl.gif',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Leg-Curl.gif',
         why: 'Hamstrings — punto débil esperado por ausencia de deadlift.' },
       { name: 'Extensión cuádriceps', detail: 'último set drop', sets: '2 × 12–15', rir: '0', tempo: '2-0-1-1', rest: '90 s',
-        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/09/leg-extension.gif',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/LEG-EXTENSION.gif',
         why: 'VMO / tear drop. Drop final hasta fallo.' },
       { name: 'Gemelos de pie máquina', detail: 'pausa 2s stretch', sets: '3 × 8–12', rir: '0–1', tempo: '2-0-1-2', rest: '90 s',
-        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/12/standing-calf-raise.gif',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2022/04/Standing-Barbell-Calf-Raise.gif',
         why: 'Pausa 2s en stretch — única forma efectiva de progresar gemelos.' }
     ]
   },
@@ -3713,22 +3730,22 @@ const DAYS = {
     tags: ['casa', 'pull', 'lats', 'bíceps'],
     exercises: [
       { name: 'Jalón polea alta Marcy', detail: 'agarre ancho neutro', sets: '4 × 8–12', rir: '1', tempo: '2-0-1-1', rest: '2.5 min',
-        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/08/neutral-grip-lat-pulldown.gif',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/06/V-bar-Lat-Pulldown.gif',
         why: 'Width. Neutro mecánicamente más fuerte que prono, permite más carga al stack de 70 kg.' },
       { name: 'Remo sentado polea baja Marcy', detail: 'hacia abdomen bajo', sets: '4 × 8–10', rir: '1', tempo: '2-0-1-1', rest: '2.5 min',
-        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/05/seated-cable-row.gif',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Seated-Cable-Row.gif',
         why: 'Thickness + lower lats. Tirar hacia abdomen bajo, no pecho.' },
       { name: 'Remo mancuerna 1 brazo', detail: 'unilateral en banco', sets: '3 × 8–10', rir: '1', tempo: '2-0-1-1', rest: '90 s',
-        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/06/single-arm-dumbbell-row.gif',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Row.gif',
         why: 'ROM unilateral mayor + corrige asimetrías. Carga hasta tu DB máx (24 kg).' },
       { name: 'Pullover mancuerna', detail: 'banco transversal', sets: '3 × 10–12', rir: '0–1', tempo: '3-0-1-1', rest: '90 s',
-        yt: 'Cvsaj2AXevI', gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/05/dumbbell-pullover.gif',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2015/11/Leg-Press.gif',
         why: 'Lat en stretch profundo bajo carga. Mejor ejercicio del Marcy setup para lat hipertrofia.' },
       { name: 'Face pulls polea baja', detail: 'hacia la cara', sets: '4 × 12–15', rir: '0–1', tempo: '2-0-1-1', rest: '90 s',
-        yt: 'eTCBSFlCJ_s', gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/04/face-pull.gif',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Face-Pull.gif',
         why: 'Rear delt + rotadores externos. Salud articular del hombro priorizada.' },
       { name: 'Curl mancuerna inclinado', detail: 'banco 45° · long head', sets: '3 × 8–12', rir: '0–1', tempo: '3-0-1-1', rest: '90 s',
-        yt: 'DCe8f6vMe9A', gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/05/incline-dumbbell-curl.gif',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Seated-Incline-Dumbbell-Curl.gif',
         why: 'Bíceps cabeza larga en stretch → pico. Si 13.5 kg no sale 3x: usa 11.25 kg + microplates.' }
     ]
   },
@@ -3738,22 +3755,22 @@ const DAYS = {
     tags: ['gym', 'push 2', 'shoulder day', 'lat delt'],
     exercises: [
       { name: 'Press militar barra de pie', detail: 'OHP · pico de fuerza', sets: '4 × 6–8', rir: '1–2', tempo: '2-1-1-0', rest: '3 min',
-        yt: '2yjwXTZQDDI', gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/04/standing-barbell-shoulder-press.gif',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Shoulder-Press.gif',
         why: 'Pico de fuerza delt anterior. Barbell > DB para sobrecarga progresiva limpia.' },
       { name: 'Press inclinado máquina', detail: 'Hammer u otra', sets: '3 × 8–10', rir: '1', tempo: '—', rest: '2.5 min',
-        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2023/05/hammer-strength-incline-chest-press.gif',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/06/Lever-Incline-Chest-Press.gif',
         why: '2º hit upper chest en vector distinto al lunes (machine plane vs DB).' },
       { name: 'Elevación lateral cable', detail: 'polea baja contralateral', sets: '4 × 10–15', rir: '0–1', tempo: '2-0-1-1', rest: '90 s',
-        yt: 'dGZlbRF6MR0', gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/05/cable-lateral-raise.gif',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/06/Lever-Incline-Chest-Press.gif',
         why: 'Tensión constante en el bottom range del lat delt (DB tiene zero tension ahí).' },
       { name: 'Elevación lateral tumbado', detail: 'banco inclinado · de lado', sets: '3 × 12–15', rir: '0–1', tempo: '2-0-1-1', rest: '90 s',
-        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/05/lying-side-lateral-raise.gif',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/06/Dumbbell-Bent-Arm-Laterl-Raise.gif',
         why: 'Resistencia máxima en stretched position. Mejor ejercicio para lat delt long-length bias.' },
       { name: 'Press francés barra Z', detail: 'banco declinado leve', sets: '3 × 8–10', rir: '1', tempo: '3-0-1-0', rest: '90 s',
-        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/04/ez-bar-skull-crusher.gif',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/08/EZ-Barbell-Incline-Triceps-Extension.gif',
         why: 'Cabeza larga del tríceps en estiramiento (declinado lo carga más).' },
       { name: 'Pushdown polea cuerda', detail: 'cabeza lateral finisher', sets: '3 × 10–12', rir: '0–1', tempo: '2-0-1-1', rest: '90 s',
-        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/04/rope-tricep-pushdown.gif',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/06/Rope-Pushdown.gif',
         why: 'Cabeza lateral del tríceps, finisher.' }
     ]
   },
@@ -3763,25 +3780,25 @@ const DAYS = {
     tags: ['gym', 'brazos', 'pump', 'lat delt 3x'],
     exercises: [
       { name: 'Elevación lateral cable polea baja', detail: 'contralateral · 3er hit lat delt', sets: '4 × 12–15', rir: '0–1', tempo: '2-0-1-1', rest: '75 s',
-        yt: 'dGZlbRF6MR0', gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/05/cable-lateral-raise.gif',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/06/Dumbbell-Bent-Arm-Laterl-Raise.gif',
         why: 'Tensión constante en bottom range donde DB tiene zero — crítico para 3er hit lat delt.' },
       { name: 'Reverse pec deck', detail: 'rear delt machine · aislamiento real', sets: '4 × 12–15', rir: '0–1', tempo: '2-0-1-1', rest: '75 s',
-        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/05/reverse-pec-deck-fly.gif',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Rear-Delt-Machine-Flys.gif',
         why: 'Aislamiento real sin compensar espalda; curva de resistencia superior a pájaros DB.' },
       { name: 'Curl predicador máquina o barra Z', detail: 'banco predicador real · short head', sets: '3 × 8–12', rir: '0–1', tempo: '2-0-1-1', rest: '90 s',
-        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/05/preacher-curl.gif',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/04/Lever-Preacher-Curl.gif',
         why: 'Pad real a ángulo correcto vs banco improvisado; mejor activación short head para pico.' },
       { name: 'Extensión tríceps overhead cuerda', detail: 'polea · long head bias', sets: '3 × 10–12', rir: '0–1', tempo: '3-0-1-1', rest: '90 s',
-        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2023/02/overhead-cable-tricep-extension.gif',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/04/Cable-Rope-Overhead-Triceps-Extension.gif',
         why: 'Cuerda en polea = resistencia suave en stretch; superior a DB a dos manos para long head.' },
       { name: 'Curl martillo mancuerna', detail: 'braquial + braquiorradial · movido del Mié', sets: '3 × 10–12', rir: '0–1', tempo: '—', rest: '75 s',
-        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/05/hammer-curl.gif',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Hammer-Curl.gif',
         why: 'Braquial + braquiorradial = grosor del brazo. Movido aquí para acortar el Mié (24→21 sets) y recortar tríceps de 15→12 sets/sem (estaba sobre tu propio MAV de 10–14).' },
       { name: 'Leg curl sentado máquina', detail: 'ham 2x freq · curva real', sets: '4 × 10–15', rir: '0–1', tempo: '3-0-1-1', rest: '90 s',
-        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/08/seated-leg-curl.gif',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/08/Seated-Leg-Curl.gif',
         why: 'Curva de resistencia real vs rodillos Marcy; permite más carga y progresión limpia.' },
       { name: 'Leg extension máquina', detail: 'quad 2x freq · más carga', sets: '4 × 12–15', rir: '0–1', tempo: '2-0-1-1', rest: '90 s',
-        gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/09/leg-extension.gif',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/LEG-EXTENSION.gif',
         why: 'Más carga, mejor pad, progresión lineal más fácil que Marcy extension.' }
     ]
   }
@@ -3792,13 +3809,13 @@ const DAYS = {
     tags: ['solo suelo + mancuerna', 'post Lun + Jue', '2–3x/sem', 'cero oblicuos con carga'],
     exercises: [
       { name: 'Crunch con mancuerna en el pecho', detail: 'suelo · carga progresiva con tus DB', sets: '3 × 10–15', rir: '0–1', tempo: '2-1-1-1', rest: '60 s',
-        yt: 'cbwLMF7oJGI', gif: '',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Rear-Delt-Machine-Flys.gif',
         why: 'Recto abdominal con sobrecarga progresiva usando tus mancuernas de casa (hasta 24 kg de recorrido de progresión). Flexiona la columna vértebra a vértebra, no tires del cuello. Pausa 1s arriba apretando. Cuando 3×15 salga fácil: sube peso, no reps infinitas. En gym puedes sustituir por crunch en polea alta si prefieres.' },
       { name: 'Reverse crunch en el suelo', detail: 'curl de pelvis · recto inferior', sets: '3 × 12–15', rir: '0–1', tempo: '2-0-1-1', rest: '60 s',
-        yt: 'XY8KzdDcMFg', gif: '',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Lying-Leg-Raise.gif',
         why: 'Recto inferior sin barra ni equipo: tumbado, rodillas a 90°, curlea la pelvis despegando la cadera del suelo — el movimiento es de la pelvis, no de las piernas. Progresión: pausa arriba → piernas más extendidas → mancuerna ligera sujeta entre los pies. Cero estrés lumbar.' },
       { name: 'Ab wheel de rodillas', detail: 'o plancha RKC 3×30s si no hay rueda', sets: '2 × 8–12', rir: '1', tempo: '3-0-1-0', rest: '60 s',
-        yt: 'PK4n7qJpOhM', gif: '',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/08/swiss-ball-rollout.gif',
         why: 'Anti-extensión: recto + transverso isométricos bajo estiramiento — cintura más plana por control del core, no más ancha. Rango parcial hasta dominar el completo; glúteo apretado para proteger lumbar. Sin rueda: plancha RKC (plancha normal apretando todo al máximo) 3×30s.' }
     ]
   },
@@ -3813,38 +3830,41 @@ const DAYS = {
     tags: ['keepcool', 'push', 'máquinas', 'sesión 1'],
     exercises: [
       { name: 'Press de pecho en máquina', detail: 'machine chest press · pectoral medio', sets: '3 × 10', rir: '1–2', tempo: '2-0-1-1', rest: '1 min 30',
-        yt: 'zgP-UCKGe24', gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2023/02/machine-chest-press.gif',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/08/Lying-Chest-Press-Machine.gif',
         why: 'Primer empuje del día: con la máquina no gastas energía estabilizando, toda la carga va al pecho. Agarre a la altura del esternón, codos ~45° del torso, sin bloquear el codo arriba. Cuando saques las 3×10 limpias con el mismo peso, sube un plato la próxima sesión.' },
       { name: 'Press inclinado en máquina', detail: 'développé couché incliné guidé · pecho superior', sets: '3 × 10', rir: '1–2', tempo: '2-0-1-1', rest: '1 min 30',
-        yt: 'LiDArz1R2NU', gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2023/05/hammer-strength-incline-chest-press.gif',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Incline-Chest-Press-Machine.gif',
         why: 'Segundo vector para el pecho, esta vez con énfasis en la porción clavicular (pecho alto) — la zona que más cambia la silueta del torso. Espalda pegada al respaldo, sin despegar los hombros al empujar.' },
       { name: 'Press de hombro en máquina', detail: 'machine shoulder press · deltoides anterior', sets: '2 × 10–12', rir: '1', tempo: '2-0-1-1', rest: '1 min',
-        yt: '3R14MnZbcpw', gif: '',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/04/Lever-Shoulder-Press.gif',
         why: 'Compuesto de hombro después del pecho: llegas pre-fatigado, por eso 2 series bastan. Ajusta el asiento para que las asas queden a la altura de los hombros, no del cuello. Recorrido completo, sin chocar los codos arriba.' },
       { name: 'Pushdown de tríceps en polea', detail: 'cable triceps pushdown · cuerda o barra', sets: '3 × 10–15', rir: '0–1', tempo: '2-0-1-1', rest: '1 min',
-        yt: 'n2FSCB4vRSA', gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/04/rope-tricep-pushdown.gif',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/06/Rope-Pushdown.gif',
         why: 'Finalizador de tríceps con rango alto de reps buscando congestión. Codos pegados al costado y fijos: si se van hacia atrás estás haciendo remo, no extensión. Aquí no busques peso máximo, busca sentir el tríceps las 15 reps.' }
     ]
   },
   'k-s2': {
     num: 'K2', title: 'Pull', subtitle: 'KeepCool · tirar',
-    duration: '~45 min', location: 'KeepCool', sets: 11, routine: 'keepcool',
+    duration: '~55 min', location: 'KeepCool', sets: 14, routine: 'keepcool',
     warmup: '5 min bici o elíptica · ritmo suave, solo subir pulso y temperatura',
     cooldown: 'Estiramientos 5 min · dorsal, espalda alta y bíceps',
     tags: ['keepcool', 'pull', 'máquinas', 'sesión 2'],
     exercises: [
       { name: 'Jalón vertical', detail: 'vertical draw · polea alta · anchura de dorsal', sets: '3 × 10', rir: '1–2', tempo: '2-0-1-1', rest: '1 min 30',
-        yt: 'CAwf7n6Luuc', gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/08/neutral-grip-lat-pulldown.gif',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Lat-Pulldown.gif',
         why: 'El tirón vertical es lo que construye la anchura de espalda, la base del V-taper. Lleva la barra al pecho alto, nunca a la nuca, y piensa en bajar los codos hacia los bolsillos en vez de tirar con las manos.' },
       { name: 'Remo bajo en polea', detail: 'low row · grosor de espalda media', sets: '3 × 10', rir: '1–2', tempo: '2-0-1-1', rest: '1 min 30',
-        yt: 'GZbfZ033f74', gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/05/seated-cable-row.gif',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Seated-Cable-Row.gif',
         why: 'El tirón horizontal complementa al jalón: uno da anchura, este da grosor. Tira hacia el abdomen bajo con el torso quieto — si te balanceas hacia atrás para mover el peso, es demasiado peso.' },
       { name: 'Upper back en máquina', detail: 'espalda alta y deltoides posterior', sets: '2 × 10–12', rir: '1', tempo: '2-0-1-2', rest: '1 min',
-        yt: 'beKbbq6NhWY', gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/05/reverse-pec-deck-fly.gif',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2023/06/Lever-High-Row.gif',
         why: 'Espalda alta, romboides y deltoides posterior: el bloque que endereza la postura y cierra el hombro por detrás. Aprieta 2 s en la contracción. Si en tu KeepCool esta máquina es un remo alto en vez de un pec-deck invertido, el gesto cambia pero el objetivo es el mismo: juntar los omóplatos.' },
-      { name: 'Curl de bíceps', detail: 'biceps curl · mancuerna, barra Z o máquina', sets: '3 × 10–15', rir: '0–1', tempo: '3-0-1-1', rest: '1 min',
-        yt: '2MUEL4nL6hA', gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/05/incline-dumbbell-curl.gif',
-        why: 'Finalizador de bíceps con rango alto de reps. Baja el peso en 3 s controlados: la fase excéntrica es donde se genera casi todo el estímulo en un aislamiento. Codos quietos, sin impulso de cadera.' }
+      { name: 'Curl predicador en máquina', detail: 'biceps curl · barra Z en el banco Scott', sets: '3 × 10–15', rir: '0–1', tempo: '3-0-1-1', rest: '1 min',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/04/Lever-Preacher-Curl.gif',
+        why: 'El curl que ya haces: el brazo apoyado en el pad elimina todo el impulso, así que el bíceps trabaja solo. Con el codo por delante del torso el énfasis va a la cabeza corta, la interna, que es la que da pico al brazo. Baja en 3 s controlados y no estires del todo el codo abajo para no cargar el tendón.' },
+      { name: 'Curl inclinado con mancuernas', detail: 'banco a 45° · cabeza larga (la de fuera)', sets: '3 × 10', rir: '0–1', tempo: '3-0-1-1', rest: '1 min',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Seated-Incline-Dumbbell-Curl.gif',
+        why: 'El complemento exacto del predicador. Tumbado en el banco inclinado los brazos cuelgan por detrás del torso, y esa posición estira la cabeza larga del bíceps — la que se ve por fuera del brazo y la que da altura al pico. Deja los codos quietos y atrás: si los llevas hacia delante pierdes justo el estiramiento que buscas. Empieza ligero, en esta posición se siente mucho más pesado de lo que marca la mancuerna.' }
     ]
   },
   'k-s3': {
@@ -3855,16 +3875,16 @@ const DAYS = {
     tags: ['keepcool', 'piernas', 'máquinas', 'sesión 3'],
     exercises: [
       { name: 'Sentadilla en barra guiada', detail: 'guided bar squat · Smith / multipower', sets: '3 × 10', rir: '1–2', tempo: '2-1-1-0', rest: '1 min 30',
-        yt: '3PpzYOubZ5A', gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/03/high-bar-back-squat.gif',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2024/10/smith-machine-squat.gif',
         why: 'El compuesto de la sesión: la barra guiada te quita el equilibrio de la ecuación, así que puedes ir a por carga sin miedo. Pies ligeramente adelantados respecto a la barra, baja hasta el paralelo (muslo horizontal) y sube sin bloquear del todo la rodilla.' },
       { name: 'Prensa de piernas', detail: 'leg press · 45° · pies a media altura', sets: '3 × 10', rir: '1–2', tempo: '2-0-1-1', rest: '1 min 30',
-        yt: 'K5n2vg3oZa4', gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/04/45-degree-leg-press.gif',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2015/11/Leg-Press.gif',
         why: 'Volumen de cuádriceps y glúteo sin carga sobre la columna. Baja hasta que la rodilla haga ~90° sin que la cadera se despegue del respaldo: si la zona lumbar se redondea, has bajado demasiado.' },
       { name: 'Extensión de cuádriceps', detail: 'leg extension · aislamiento', sets: '3 × 10', rir: '0–1', tempo: '2-0-1-1', rest: '1 min 30',
-        yt: 'ljO4jkwv8wQ', gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/09/leg-extension.gif',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/LEG-EXTENSION.gif',
         why: 'Aislamiento puro de cuádriceps, sobre todo del recto femoral y el vasto medial (la gota sobre la rodilla). Extiende del todo y aprieta arriba un instante; baja controlado sin dejar caer el rodillo.' },
       { name: 'Curl femoral', detail: 'leg curl · tumbado o sentado', sets: '2 × 10–15', rir: '0–1', tempo: '3-0-1-1', rest: '1 min',
-        yt: '14OrOWlM5QU', gif: 'https://www.inspireusafoundation.org/wp-content/uploads/2022/11/lying-leg-curl.gif',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Leg-Curl.gif',
         why: 'Los isquios equilibran la pierna frente a tanto cuádriceps y protegen la rodilla. Excéntrica de 3 s, que es donde el femoral responde mejor. Cadera pegada al banco, sin levantarla para ayudarte.' }
     ]
   },
@@ -3875,28 +3895,28 @@ const DAYS = {
     tags: ['genesis', 'pecho', 'espalda', '8 ejercicios'],
     exercises: [
       { name: 'Press inclinado en Smith', detail: 'o barra libre / mancuernas', sets: '4 × 15,12,10,8', rir: '1–2', tempo: '—', rest: '2 min',
-        yt: 'yFQshytandQ', gif: '',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/06/Smith-Machine-Incline-Bench-Press.gif',
         why: 'Pirámide ascendente: en cada serie subes peso y bajas reps (15→12→10→8). Upper chest primero mientras estás fresco.' },
       { name: 'Press plano con barra', detail: 'o barra libre / mancuernas', sets: '4 × 15,12,10,8', rir: '1–2', tempo: '—', rest: '2 min',
-        yt: '', gif: '',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Bench-Press.gif',
         why: 'Pecho medio, misma pirámide. Base de fuerza de empuje horizontal.' },
       { name: 'Cross-overs', detail: 'polea · doble rango', sets: '4 × 10 y 15', rir: '0–1', tempo: '2-0-1-1', rest: '90 s',
-        yt: '', gif: '',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Cable-Crossover.gif',
         why: 'Pesadas 10 reps, luego bajas 40% del peso y sacas 12–15. Estiramiento y contracción del pecho.' },
       { name: 'Flys en pec-deck', detail: 'contracción 2s', sets: '4 × 10–12', rir: '0–1', tempo: '2-0-1-2', rest: '90 s',
-        yt: '', gif: '',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Pec-Deck-Fly.gif',
         why: 'Aislamiento de pecho apretando 2 segundos en contracción cada rep.' },
       { name: 'Jalón al pecho', detail: 'lat pulldown', sets: '4 × 15,12,10,8', rir: '1–2', tempo: '—', rest: '2 min',
-        yt: 'CAwf7n6Luuc', gif: '',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Lat-Pulldown.gif',
         why: 'Anchura de espalda (dorsal), pirámide ascendente. Inicia el bloque de espalda.' },
       { name: 'Remo con barra o Smith', detail: 'grosor de espalda', sets: '4 × 15,12,10,8', rir: '1–2', tempo: '—', rest: '2 min',
-        yt: '', gif: '',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Bent-Over-Row.gif',
         why: 'Grosor de espalda media. Pirámide. Torso firme, tira hacia el ombligo.' },
       { name: 'Jalón con agarre supino', detail: 'doble rango', sets: '4 × 10 y 15', rir: '0–1', tempo: '—', rest: '90 s',
-        yt: 'GZbfZ033f74', gif: '',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/04/Reverse-Lat-Pulldown.gif',
         why: 'Sacas 10 reps, bajas peso y haces 15 más. Agarre supino mete más bíceps y dorsal bajo.' },
       { name: 'Remo en máquina de polea', detail: 'contracción sostenida', sets: '4 × 15', rir: '0–1', tempo: '2-0-1-2', rest: '90 s',
-        yt: 'GZbfZ033f74', gif: '',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Seated-Cable-Row.gif',
         why: 'Apretando 2s en contracción; en la última rep sostén 10s. Finisher de espalda.' }
     ]
   },
@@ -3906,34 +3926,34 @@ const DAYS = {
     tags: ['genesis', 'hombro', 'brazo', '10 ejercicios'],
     exercises: [
       { name: 'Press de hombro en máquina o Smith', detail: 'delt anterior', sets: '4 × 12,10,8,6', rir: '1–2', tempo: '—', rest: '2 min',
-        yt: '2yjwXTZQDDI', gif: '',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Smith-Machine-Shoulder-Press.gif',
         why: 'Pirámide: 12→10→8→6 subiendo peso. Compound de hombro para empezar fresco.' },
       { name: 'Laterales con mancuerna', detail: 'doble rango', sets: '4 × 10 y 15', rir: '0–1', tempo: '2-0-1-1', rest: '75 s',
-        yt: '3VcKaXpzqRo', gif: '',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Lateral-Raise.gif',
         why: 'Pesadas 10 reps, bajas 40% y sacas 12–15. Deltoide lateral = anchura de hombros.' },
       { name: 'Frontal con barra en cable', detail: 'delt anterior', sets: '4 × 10–12', rir: '0–1', tempo: '2-0-1-2', rest: '75 s',
-        yt: '', gif: '',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Cable-Front-Raise.gif',
         why: 'Apretando 2s en contracción por rep. Cable = tensión constante en delt frontal.' },
       { name: 'Flys posteriores en pec-deck', detail: 'rear delt', sets: '4 × 12–15', rir: '0–1', tempo: '2-0-1-2', rest: '75 s',
-        yt: '', gif: '',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Rear-Delt-Machine-Flys.gif',
         why: 'Deltoide posterior apretando 2s. Clave para hombro 3D y postura.' },
       { name: 'Press francés', detail: 'tríceps · pesadas', sets: '4 × 6–8', rir: '1–2', tempo: '—', rest: '2 min',
-        yt: '', gif: '',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/06/Dumbbell-Skull-Crusher.gif',
         why: 'Cabeza larga del tríceps en estiramiento. Pesado por reps bajas.' },
       { name: 'Extensión con barra en cable', detail: 'doble rango', sets: '4 × 6 y 15', rir: '0–1', tempo: '—', rest: '90 s',
-        yt: '', gif: '',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2022/02/V-bar-Pushdown.gif',
         why: 'Pesadas 6 reps, bajas 40% y sacas 12–15. Pushdown con barra.' },
       { name: 'Copa con soga en cable', detail: 'overhead cuerda', sets: '4 × 8–10', rir: '0–1', tempo: '2-0-1-2', rest: '75 s',
-        yt: '', gif: '',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/04/Cable-Rope-Overhead-Triceps-Extension.gif',
         why: 'Apretando 2s cada rep. Overhead = cabeza larga en máximo estiramiento.' },
       { name: 'Curls con mancuerna sentado', detail: 'drop-set', sets: '4 × 6 y 15', rir: '0–1', tempo: '—', rest: '90 s',
-        yt: '', gif: '',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Curl.gif',
         why: 'Sacas 8 reps pesadas, bajas peso y haces 15 más (drop-set). Bíceps.' },
       { name: 'Predicador', detail: 'contracción sostenida', sets: '4 × 10–12', rir: '0–1', tempo: '3-0-1-2', rest: '75 s',
-        yt: '', gif: '',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/04/Lever-Preacher-Curl.gif',
         why: 'Sostén 10s en contracción en la última rep. Pico del bíceps aislado.' },
       { name: 'Curl inclinado con mancuernas', detail: 'concentradas apretando arriba', sets: '4 × 10–12', rir: '0–1', tempo: '3-0-1-2', rest: '75 s',
-        yt: 'DCe8f6vMe9A', gif: '',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Seated-Incline-Dumbbell-Curl.gif',
         why: 'Bien hechas apretando arriba. Inclinado = estiramiento de cabeza larga del bíceps.' }
     ]
   },
@@ -3943,31 +3963,31 @@ const DAYS = {
     tags: ['genesis', 'pierna', 'glúteo', '9 ejercicios'],
     exercises: [
       { name: 'Extensión de cuádriceps', detail: 'pre-fatiga · sostén 10s', sets: '3 × 10–15', rir: '0–1', tempo: '2-0-1-2', rest: '90 s',
-        yt: '', gif: '',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/LEG-EXTENSION.gif',
         why: 'Apretando y sosteniendo arriba 10s en la última rep. Pre-fatiga de cuádriceps.' },
       { name: 'Sentadilla en Smith', detail: 'o hack / barra libre', sets: '3 × 12,10,8', rir: '1–2', tempo: '—', rest: '3 min',
-        yt: 'CCpr-xZWTng', gif: '',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2024/10/smith-machine-squat.gif',
         why: 'Pirámide 12→10→8 subiendo peso. Base de fuerza de pierna.' },
       { name: 'Prensa', detail: 'leg press', sets: '3 × 12,10,8', rir: '1–2', tempo: '—', rest: '2.5 min',
-        yt: '', gif: '',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2015/11/Leg-Press.gif',
         why: 'Pirámide. Cuádriceps y glúteo con carga alta sin estabilización.' },
       { name: 'Peso muerto con barra', detail: 'cadena posterior', sets: '3 × 12,10,8', rir: '2', tempo: '—', rest: '3 min',
-        yt: '', gif: '',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Deadlift.gif',
         why: 'Pirámide. Femoral y glúteo. Espalda neutra, empuja el piso.' },
       { name: 'Femoral sentado', detail: 'sostén 10s', sets: '3 × 8–10', rir: '0–1', tempo: '2-0-1-2', rest: '90 s',
-        yt: '14OrOWlM5QU', gif: '',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/08/Seated-Leg-Curl.gif',
         why: 'Apretando 2s cada rep, sostén 10s en la última. Isquios en flexión.' },
       { name: 'Femoral acostado', detail: 'sostén 15s', sets: '3 × 10–12', rir: '0–1', tempo: '2-0-1-2', rest: '90 s',
-        yt: '', gif: '',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Leg-Curl.gif',
         why: 'Apretando 2s, sostén 15s arriba en la última rep. Isquios completos.' },
       { name: 'Hip-thrust', detail: 'glúteo · sostén 10s', sets: '3 × 10–12', rir: '0–1', tempo: '2-0-1-2', rest: '90 s',
-        yt: '', gif: '',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Hip-Thrust.gif',
         why: 'Apretando 2s cada rep, sostén 10s en la última. Máxima activación de glúteo.' },
       { name: 'Abductores', detail: 'glúteo medio · sostén 10s', sets: '3 × 10–12', rir: '0–1', tempo: '2-0-1-2', rest: '75 s',
-        yt: '', gif: '',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/HIP-ADDUCTION-MACHINE.gif',
         why: 'Apretando 2s y sosteniendo cerrado 10s en la última rep. Glúteo medio = cadera redonda.' },
       { name: 'Pantorrilla en costurera', detail: 'gemelo · sostén 2s', sets: '3 × 15–20', rir: '0–1', tempo: '2-2-1-2', rest: '60 s',
-        yt: '', gif: '',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/06/Lever-Seated-Calf-Raise.gif',
         why: 'Sostén 2s en contracción cada rep. Rango completo, estiramiento abajo.' }
     ]
   },
@@ -3977,16 +3997,16 @@ const DAYS = {
     tags: ['genesis', 'core', 'nivel 1', '4 ejercicios'],
     exercises: [
       { name: 'Sit-ups', detail: 'abdomen completo', sets: '4 × 10', rir: '1', tempo: '2-0-1-1', rest: '45 s',
-        yt: 'jDwoBqPH0jk', gif: '',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Sit-ups.gif',
         why: 'Flexión completa del tronco: sube hasta quedar perpendicular al piso y baja con control. Manos cruzadas al pecho, exhala al subir. Si te molesta la lumbar, reduce el rango o cambia a crunch.' },
       { name: 'Cruches / cortitas', detail: 'crunch de rango corto', sets: '4 × 10', rir: '1', tempo: '2-1-1-1', rest: '45 s',
-        yt: 'Xyd_fa5zoEU', gif: '',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/05/Floor-Crunch.gif',
         why: 'Crunch de rango corto: solo despegas los omóplatos del suelo, la lumbar se queda pegada. Aprieta el abdomen arriba 1s. Aísla el recto abdominal sin meter caderas.' },
       { name: 'Levantamiento de piernas', detail: 'recto inferior', sets: '4 × 10', rir: '1', tempo: '2-0-2-1', rest: '45 s',
-        yt: 'JB2oyawG9KI', gif: '',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Lying-Leg-Raise.gif',
         why: 'Tumbado, piernas rectas: súbelas hasta la vertical y bájalas sin que los talones toquen el piso (tensión constante). Baja despacio. Recto inferior sin equipo.' },
       { name: 'Planchas', detail: 'isométrico anti-extensión', sets: '4 × 30 seg', rir: '—', tempo: 'isométrico', rest: '45 s',
-        yt: 'pSHjTRCQxIw', gif: '',
+        yt: '', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/plank.gif',
         why: 'Antebrazos y punta de pies, cuerpo en línea recta de cabeza a talones. Aprieta glúteo y abdomen al máximo — no dejes caer la cadera ni levantes el trasero. Core anti-extensión.' }
     ]
   }
@@ -4862,33 +4882,24 @@ function openExercise(day, idx) {
   const ex = DAYS[day].exercises[idx];
   if (!ex) return;
 
+  // La demostración es siempre un GIF. Si no carga, se ofrece buscarlo como último recurso.
   const ytQuery = encodeURIComponent(ex.name + ' técnica forma correcta');
-  const searchBtn = `<a class="yt-search-link" href="https://www.youtube.com/results?search_query=${ytQuery}" target="_blank" rel="noopener">Más videos en YouTube ↗</a>`;
-
   const demoFallback = `<div class="placeholder">
-      <span class="ph-k">// demostración</span>
+      <span class="ph-k">// demostración no disponible</span>
       <strong>${ex.name}</strong>
-      <a class="yt-search-link" href="https://www.youtube.com/results?search_query=${ytQuery}" target="_blank" rel="noopener">Ver en YouTube ↗</a>
+      <a class="yt-search-link" href="https://www.youtube.com/results?search_query=${ytQuery}" target="_blank" rel="noopener">Buscarla ↗</a>
     </div>`;
 
-  if (ex.yt) {
-    modalImg.innerHTML = `
-      <div style="width:100%; padding:0.75rem;">
-        <div class="video-wrap">
-          <iframe src="https://www.youtube-nocookie.com/embed/${ex.yt}?rel=0&modestbranding=1"
-            title="${ex.name}" loading="lazy" allow="accelerometer; encrypted-media; picture-in-picture"
-            allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
-        </div>
-        <div style="text-align:center;">${searchBtn}</div>
-      </div>`;
-  } else if (ex.gif) {
-    modalImg.innerHTML = `<div class="gif-wrap" style="width:100%; text-align:center; padding:0.75rem;">
-      <img src="${ex.gif}" alt="${ex.name}" loading="lazy">
-      <div>${searchBtn}</div>
+  if (ex.gif) {
+    modalImg.innerHTML = `<div class="gif-wrap">
+      <div class="gif-load">cargando demostración…</div>
+      <img src="${ex.gif}" alt="Demostración de ${ex.name}" loading="eager" decoding="async">
     </div>`;
-    // Si el GIF no carga (el host original ya no sirve estas rutas) cae al buscador
+    const wrap = modalImg.querySelector('.gif-wrap');
     const img = modalImg.querySelector('img');
-    if (img) img.addEventListener('error', () => { modalImg.innerHTML = demoFallback; });
+    img.addEventListener('load', () => wrap.classList.add('ready'));
+    img.addEventListener('error', () => { modalImg.innerHTML = demoFallback; });
+    if (img.complete && img.naturalWidth) wrap.classList.add('ready');
   } else {
     modalImg.innerHTML = demoFallback;
   }

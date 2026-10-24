@@ -1,7 +1,7 @@
 /* Greek God Protocol · service worker
    Estrategia: network-first para el HTML (para que una versión nueva llegue enseguida)
    y cache-first para todo lo demás (iconos, fuentes, GIFs de los ejercicios). */
-const CACHE = 'greek-god-v4';
+const CACHE = 'greek-god-v5';
 const CORE = [
   './',
   './index.html',
@@ -32,7 +32,7 @@ function cacheable(url) {
   return url.startsWith(self.location.origin)
     || url.includes('fonts.googleapis.com')
     || url.includes('fonts.gstatic.com')
-    || url.includes('inspireusafoundation.org');
+    || url.includes('fitnessprogramer.com');
 }
 
 self.addEventListener('fetch', e => {

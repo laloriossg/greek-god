@@ -69,10 +69,14 @@ usa recarga forzada o desregístralo desde DevTools → Application.
 Cualquier hosting estático sirve (GitHub Pages, Netlify, Vercel). Solo hay que publicar la carpeta
 tal cual: `index.html`, `sw.js`, `manifest.json` y los tres iconos.
 
-## Nota sobre las demostraciones de ejercicios
+## Demostraciones de ejercicios
 
-Los ejercicios de KEEPCOOL llevan vídeo de YouTube verificado. Muchos ejercicios de DEFAULT y
-GENESIS apuntaban a GIFs de `inspireusafoundation.org`, y **ese host ya no sirve esas rutas**
-(404): en esos casos la app muestra automáticamente un enlace de búsqueda en YouTube con el nombre
-del ejercicio. Para arreglarlo del todo habría que asignarles un `yt:` verificado, como se hizo con
-KEEPCOOL.
+Cada uno de los 78 ejercicios tiene un **GIF** de la ejecución. No hay vídeos embebidos.
+
+Los GIFs se enlazan desde `fitnessprogramer.com`. El mapeo ejercicio → GIF está curado a mano (no
+por coincidencia aproximada de nombres) y las URLs salen del sitemap del propio sitio, no de rutas
+adivinadas. El service worker los cachea, así que solo se descargan una vez por dispositivo.
+
+Si algún GIF dejara de cargar, la app muestra el nombre del ejercicio con un enlace para buscarlo.
+Para añadir un ejercicio nuevo hay que darle su `gif:`; el campo `yt:` se conserva vacío por
+compatibilidad con los datos antiguos.
