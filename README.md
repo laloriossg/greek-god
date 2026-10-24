@@ -20,8 +20,15 @@ Además hay secciones de **Dietas** (comidas, lista del súper, suplementos, sus
   de descanso flotante que sobrevive a cerrar el modal, cambiar de pestaña y recargar la página.
 - **Registro de cargas** por ejercicio con historial (kg × reps), delta contra la sesión anterior,
   mini-gráfica y sugerencia de subir carga al llegar al tope del rango de reps.
-- **Métricas**: composición corporal de referencia, gráfica de peso corporal con banda de ritmo
-  objetivo (+0.5–1 kg/mes) y medidas con cinta mes a mes.
+- **Métricas** en cuatro pantallas:
+  - *Progreso* — composición corporal de referencia, gráfica de peso con banda de ritmo objetivo
+    (+0.5–1 kg/mes), medidas con cinta y análisis por periodo (mes / 3 meses / 6 meses).
+  - *Fuerza* — 1RM estimado por ejercicio (fórmula de Epley sobre kg × reps), con su evolución
+    y la tabla de récords.
+  - *Volumen* — series de la semana repartidas por grupo muscular contra la franja MEV–MRV de tu
+    propia tabla, y mapa de constancia de las últimas 8 semanas.
+  - *Historial* — cada sesión terminada con su duración, series y récords.
+- **Unidades kg / lb** con un interruptor: se guarda siempre en kg y solo cambia lo que se muestra.
 - **Copia de seguridad**: exportar / importar todos los datos en JSON desde el panel de Métricas.
 - **PWA instalable** y funcional sin conexión (`sw.js`).
 
@@ -31,8 +38,19 @@ No hay servidor ni cuenta: **todo se guarda solo en el navegador del dispositivo
 borrar los datos del sitio o usar otro navegador implica empezar de cero — por eso existe el botón
 de exportar en Métricas. Úsalo de vez en cuando.
 
-Claves de `localStorage`: `doneLog`, `wlog-<ejercicio>`, `bwLog`, `measLog`, `eatenLog`,
-`routine`, `lastTab`, `lastSection`, `restTimer`, `sessStart`.
+Claves de `localStorage`: `doneLog`, `sessionLog`, `wlog-<ejercicio>`, `bwLog`, `measLog`,
+`eatenLog`, `routine`, `unit`, `forcePick`, `lastTab`, `lastSection`, `restTimer`, `sessStart`.
+
+## iPhone y zonas seguras
+
+La app se usa sobre todo en un iPhone con Dynamic Island, así que el modal de ejercicio respeta
+`env(safe-area-inset-*)`: la barra con el botón de cerrar nunca queda bajo la isla y el pie deja
+libre la franja del indicador de inicio, para que el gesto de salir de la app siga funcionando.
+Si tocas algo de ese layout, compruébalo simulando los insets:
+
+```css
+:root { --sat: 62px; --sab: 34px; }
+```
 
 ## Desarrollo
 

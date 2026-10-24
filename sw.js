@@ -1,7 +1,7 @@
 /* Greek God Protocol · service worker
    Estrategia: network-first para el HTML (para que una versión nueva llegue enseguida)
    y cache-first para todo lo demás (iconos, fuentes, GIFs de los ejercicios). */
-const CACHE = 'greek-god-v3';
+const CACHE = 'greek-god-v4';
 const CORE = [
   './',
   './index.html',
